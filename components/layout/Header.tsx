@@ -5,8 +5,9 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 const navLinks = [
-  { href: '/events', label: 'Events' },
-  { href: '/speisekarte', label: 'Speisekarte' },
+  { href: '/', label: 'Start' },
+  { href: '/events', label: 'Feiern & Geburtstage' },
+  { href: '/breakfast', label: 'Sonntagsfrühstück' },
   { href: '/#about-us', label: 'Über uns' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
@@ -37,7 +38,7 @@ export default function Header() {
 </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-6" role="list">
+        <ul className="hidden min-[930px]:flex items-center gap-6" role="list">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
@@ -51,7 +52,7 @@ export default function Header() {
         </ul>
 
         {/* CTA */}
-        <div className="hidden md:block">
+        <div className="hidden min-[930px]:block">
           <Link
             href="/kontakt"
             className="bg-white text-brand-green px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/90 transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-green"
@@ -62,7 +63,7 @@ export default function Header() {
 
         {/* Mobile Burger */}
         <button
-          className="md:hidden p-2 rounded-md text-white hover:text-white/80"
+          className="min-[930px]:hidden p-2 rounded-md text-white hover:text-white/80"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
@@ -79,7 +80,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div id="mobile-menu" className="md:hidden bg-brand-green border-t border-white/10 px-4 pb-4">
+        <div id="mobile-menu" className="min-[930px]:hidden bg-brand-green border-t border-white/10 px-4 pb-4">
           <ul className="flex flex-col gap-3 pt-3" role="list">
             {navLinks.map((link) => (
               <li key={link.href}>

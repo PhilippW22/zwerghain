@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-green: #415F48;
-  --color-brand-mint: #079171;
-  --color-brand-beige: #F5F5DC;
+  --color-brand-green: #83A17D;
+  --color-brand-mint: #677365;
+  --color-brand-beige: #faf3e3;
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 64px;
   }
 
   @media (prefers-reduced-motion: reduce) {

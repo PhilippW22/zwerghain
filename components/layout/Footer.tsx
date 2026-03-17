@@ -49,25 +49,23 @@ export default function Footer() {
     <p className="font-medium text-white mb-1">Öffnungszeiten</p>
     <div className="grid grid-cols-[auto_1fr] gap-x-4">
       <span>Di – Fr</span>
-      <span>10:00 – 18:00 Uhr</span>
-      <span>Sa, So & Feiertage</span>
-      <span>10:00 – 19:00 Uhr</span>
+      <span>9:00 – 17:30 Uhr</span>
+      <span>Sa & So</span>
+      <span>9:00 – 17:00 Uhr</span>
     </div>
     <p className="text-white/50 text-xs mt-1">Montag geschlossen</p>
+    <div className="mt-2 flex flex-col gap-0.5">
+      <p className="text-white/50 text-xs leading-relaxed mt-1">
+        Am Wochenende finden bei uns manchmal private Feiern statt –
+        dann schließen wir bereits um 13:00 Uhr. Aktuelle Hinweise
+        findet ihr hier auf der Website und auf Instagram.
+      </p>
+    </div>
   </div>
 
   <div className="flex flex-col gap-1 text-sm text-white/90">
     <p className="font-medium text-white mb-1">Preise</p>
-    <div className="grid grid-cols-[auto_1fr] gap-x-4">
-      <span>Mo – Fr (1 Std.)</span>
-      <span>3,00 €</span>
-      <span>Sa, So & Feiertage (1 Std.)</span>
-      <span>4,00 €</span>
-      <span>Kleinkinder bis 1 Jahr</span>
-      <span>2,00 €</span>
-      <span>Jede weitere Stunde</span>
-      <span>1,00 €</span>
-    </div>
+    <p className="text-white/90 text-sm">Einmalige Gebühr von 3,00 € pro Kind</p>
   </div>
 </div>
 
@@ -80,8 +78,8 @@ export default function Footer() {
             <ul className="flex flex-col gap-2" role="list">
               {[
                 { href: '/', label: 'Start' },
-                { href: '/events', label: 'Events' },
-                { href: '/speisekarte', label: 'Speisekarte' },
+                { href: '/events', label: 'Feiern & Geburtstage' },
+                { href: '/breakfast', label: 'Sonntagsfrühstück' },
                 { href: '/#about-us', label: 'Über uns' },
                 { href: '/kontakt', label: 'Kontakt' },
               ].map((link) => (
@@ -104,13 +102,7 @@ export default function Footer() {
       <div className="border-t border-white/10" />
 
       {/* Subfooter */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-
-        <p className="text-xs text-white/60 text-center sm:text-left leading-relaxed max-w-sm">
-          Das Zwerghain ist euer Kinder- und Familiencafé in Lichterfelde, wo kleine Gäste ganz groß werden.
-          Wir freuen uns auf euren Besuch!
-        </p>
-
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center">
         <nav aria-label="Rechtliche Links" className="flex flex-wrap justify-center gap-x-3 gap-y-1">
           {[
             { href: '/kontakt', label: 'Kontakt' },
@@ -131,17 +123,14 @@ export default function Footer() {
             </span>
           ))}
         </nav>
-
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center">
           <p className="text-xs text-white/40 text-center">
             Änderungen vorbehalten. © {new Date().getFullYear()} Zwerghain · Erstellt mit ♥ in Berlin
           </p>
         </div>
-      </div>
 
     </footer>
   )

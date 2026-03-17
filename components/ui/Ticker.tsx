@@ -30,7 +30,7 @@ export default function Ticker({ items }: TickerProps) {
         {repeated.map((item, index) => (
           <span
             key={index}
-            className="inline-flex items-center text-sm text-bg-brand-beige"
+            className="inline-flex items-center text-sm text-gray-800"
           >
             {item}
             <span className="mx-6 text-white/40" aria-hidden="true">·</span>

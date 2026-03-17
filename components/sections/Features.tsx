@@ -26,31 +26,23 @@ const features = [
 export default function Features() {
   return (
     <>
+      <WaveDivider fromColor="#83A17D" toColor="#F5F5DC" />
+
       <section
         aria-labelledby="features-heading"
-        className="relative bg-brand-green py-12 sm:py-16 overflow-hidden"
+        className="bg-brand-beige py-12 sm:py-16"
       >
-        {/* Subtiler Hintergrund-Gradient für Tiefe */}
-        <div
-          className="absolute inset-0 opacity-30"
-          aria-hidden="true"
-          style={{
-            background: 'radial-gradient(ellipse at 20% 50%, #079171 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, #025a45 0%, transparent 50%)',
-          }}
-        />
-
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             id="features-heading"
-            className="text-2xl sm:text-3xl font-bold text-white text-center mb-10"
+            className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10"
           >
             Spielen, genießen und feiern im Eltern-Kind-Café Zwerghain in Berlin-Lichterfelde.
           </h2>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((feature) => (
-              <Card key={feature.title} title={feature.title} variant="glass">
-                <div className="relative w-full h-44 -mx-0 rounded-2xl overflow-hidden">
+              <Card key={feature.title} title={feature.title} variant="default">
+                <div className="relative w-full h-44 rounded-2xl overflow-hidden">
                   <Image
                     src={feature.image}
                     alt={feature.imageAlt}
@@ -65,8 +57,6 @@ export default function Features() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fromColor="#415F48" toColor="#F5F5DC" />
     </>
   )
 }
