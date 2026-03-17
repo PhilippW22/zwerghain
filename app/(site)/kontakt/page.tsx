@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useState, useEffect, useMemo, useRef, Suspense, cloneElement, isValidElement } from 'react'
+import React, { useState, useEffect, useRef, Suspense, cloneElement, isValidElement } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-// ── Punkt 3: lokales Datum ohne Timezone-Problem ──
 function localDateMin(): string {
   const d = new Date()
   const yyyy = d.getFullYear()
@@ -71,7 +70,6 @@ function numOptions(min: number, max: number, suffix = '') {
   }))
 }
 
-// ── Punkt 4: Field mit aria-describedby + aria-invalid ──
 function Field({ label, error, required, children, hint, htmlFor }: {
   label: string
   error?: string
@@ -117,7 +115,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   )
 }
 
-// ── Punkt 4: UhrzeitDropdown mit id-Prop für Fehlerfokus ──
 function UhrzeitDropdown({ stunde, minute, onStunde, onMinute, errorStunde, required, idStunde }: {
   stunde: string
   minute: string
@@ -166,6 +163,7 @@ function KontaktForm() {
 
   const [form, setForm] = useState({
     vorname: '', nachname: '', email: '', telefon: '', anlass: '',
+    honeypot: '',
     tisch_datum: '', tisch_stunde: '', tisch_minute: '',
     tisch_personen: '', tisch_kind_alter: '', tisch_nachricht: '',
     gb_kind_name: '', gb_kind_alter: '', gb_datum: '',
@@ -179,6 +177,8 @@ function KontaktForm() {
 
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [serverError, setServerError] = useState('')
 
   useEffect(() => {
     const anlass = searchParams.get('anlass')
@@ -196,9 +196,11 @@ function KontaktForm() {
   const set = (field: string, value: unknown) => {
     setForm((prev) => ({ ...prev, [field]: value }))
     setErrors((prev) => ({ ...prev, [field]: '' }))
+    setServerError('')
   }
 
   const toggleArray = (field: 'gb_extras' | 'gb_essen', value: string) => {
+    setServerError('')
     setForm((prev) => {
       const arr = prev[field]
       return { ...prev, [field]: arr.includes(value) ? arr.filter(v => v !== value) : [...arr, value] }
@@ -246,13 +248,11 @@ function KontaktForm() {
     return e
   }
 
-  // ── Punkt 4: Fokus auf erstes fehlerhaftes Feld nach Submit ──
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
-      // Erstes fehlerhaftes Feld fokussieren
       const firstKey = Object.keys(errs)[0]
       setTimeout(() => {
         const el = formRef.current?.querySelector<HTMLElement>(`#${firstKey}`)
@@ -263,7 +263,31 @@ function KontaktForm() {
       }, 50)
       return
     }
-    setSubmitted(true)
+
+    setLoading(true)
+    setServerError('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setServerError(data.error || 'Ein Fehler ist aufgetreten. Bitte versucht es erneut.')
+        return
+      }
+
+      setSubmitted(true)
+
+    } catch {
+      setServerError('Verbindungsfehler. Bitte prüft eure Internetverbindung.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (submitted) {
@@ -285,6 +309,24 @@ function KontaktForm() {
   return (
     <form ref={formRef} onSubmit={handleSubmit} noValidate aria-label="Kontaktformular"
       className="bg-white rounded-3xl shadow-sm p-6 sm:p-10 flex flex-col gap-6">
+
+      {/* ── Honeypot – visuell versteckt, aber im DOM vorhanden ── */}
+      <div
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
+      >
+        <label htmlFor="honeypot">Bitte leer lassen</label>
+        <input
+          id="honeypot"
+          name="honeypot"
+          type="text"
+          value={form.honeypot}
+          onChange={e => set('honeypot', e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <p className="text-sm text-gray-500">
         Felder mit <span className="text-brand-green">*</span> sind Pflichtfelder.
       </p>
@@ -338,7 +380,6 @@ function KontaktForm() {
                 Di–Fr 9–17 Uhr · Sa, So & Feiertage 9–17 Uhr
               </span>
             </legend>
-            {/* Punkt 3: localDateMin() statt toISOString() */}
             <Field label="Datum" required error={errors.tisch_datum} htmlFor="tisch_datum">
               <input id="tisch_datum" type="date"
                 min={localDateMin()}
@@ -408,7 +449,6 @@ function KontaktForm() {
                 Sa & So ab 14:00 · Mi & Do ab 14:30 · weitere Termine auf Anfrage
               </span>
             </legend>
-            {/* Punkt 3: localDateMin() */}
             <Field label="Datum" required error={errors.gb_datum} htmlFor="gb_datum">
               <input id="gb_datum" type="date"
                 min={localDateMin()}
@@ -615,9 +655,18 @@ function KontaktForm() {
             )}
           </div>
 
-          <button type="submit"
-            className="w-full bg-brand-green text-white px-6 py-4 rounded-2xl text-base font-bold hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 mt-2">
-            Anfrage absenden
+          {serverError && (
+            <p role="alert" className="text-sm text-red-500 text-center">
+              {serverError}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-brand-green text-white px-6 py-4 rounded-2xl text-base font-bold hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 mt-2 disabled:opacity-60"
+          >
+            {loading ? 'Wird gesendet…' : 'Anfrage absenden'}
           </button>
         </>
       )}
