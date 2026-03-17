@@ -41,13 +41,13 @@ export default function Tagline() {
           className="font-bold leading-tight tracking-tight text-brand-mint whitespace-nowrap text-[clamp(2rem,8vw,5.5rem)] motion-reduce:transform-none"
           style={{ transform: `translateY(${line1Y}px)`, willChange: 'transform' }}
         >
-          früher berghain
+          früher Berghain
         </p>
         <p
           className="font-bold leading-tight tracking-tight text-brand-green whitespace-nowrap text-[clamp(2rem,8vw,5.5rem)] motion-reduce:transform-none"
           style={{ transform: `translateY(${line2Y}px)`, willChange: 'transform' }}
         >
-          heute zwerghain
+          heute Zwerghain
         </p>
       </div>
     </section>

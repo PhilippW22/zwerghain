@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import type { ReactNode } from 'react'
 import './globals.css'
@@ -17,12 +17,17 @@ export const metadata: Metadata = {
     template: '%s | Zwerghain',
   },
   description: 'Willkommen im Zwerghain – Euer gemütliches Eltern-Kind-Café.',
-  metadataBase: new URL('https://zwerghain.de'), // Domain anpassen wenn bekannt
+  metadataBase: new URL('https://zwerghain.de'),
   openGraph: {
     siteName: 'Zwerghain',
     locale: 'de_DE',
     type: 'website',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -35,13 +40,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Zum Hauptinhalt springen
         </a>
-
         <Header />
-
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>
-
         <Footer />
       </body>
     </html>
