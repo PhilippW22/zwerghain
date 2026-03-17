@@ -5,7 +5,6 @@ import WaveDivider from '@/components/ui/WaveDivider'
 export default function EventHighlight() {
   return (
     <>
-
       <section
         aria-labelledby="event-highlight-heading"
         className="relative bg-brand-green py-12 sm:py-16 overflow-hidden"
@@ -24,12 +23,21 @@ export default function EventHighlight() {
           {/* Card 1 – Events & Feiern */}
           <div className="rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 grid grid-cols-1 md:grid-cols-2">
             <div className="relative w-full h-64 md:h-auto min-h-64">
+              {/* Desktop ab 768px */}
               <Image
                 src="/images/event1.jpg"
                 alt="Kindergeburtstag feiern im Zwerghain – Eventlocation in Berlin-Lichterfelde"
                 fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover hidden md:block"
+                sizes="50vw"
+              />
+              {/* Mobile bis 767px */}
+              <Image
+                src="/images/birthday2.jpg"
+                alt="Kindergeburtstag feiern im Zwerghain – Eventlocation in Berlin-Lichterfelde"
+                fill
+                className="object-cover md:hidden"
+                sizes="100vw"
               />
             </div>
             <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10">
@@ -119,8 +127,7 @@ export default function EventHighlight() {
 
         </div>
       </section>
-            <WaveDivider fromColor="#83A17D" toColor="#F5F5DC" />
-      
+      <WaveDivider fromColor="#83A17D" toColor="#F5F5DC" />
     </>
   )
 }

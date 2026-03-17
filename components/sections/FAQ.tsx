@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import WaveDivider from '@/components/ui/WaveDivider'
 
 const faqs = [
   {
@@ -29,40 +28,31 @@ const faqs = [
     question: 'Muss ich einen Platz reservieren?',
     answer: (
       <>
-        Für den regulären Cafébesuch ist keine Reservierung notwendig. Für Kindergeburtstage,
-        Baby Shower, Taufen oder andere besondere Anlässe empfehlen wir jedoch eine frühzeitige
-        Anfrage über unser{' '}
+        Für einen regulären Cafébesuch ist keine Reservierung notwendig. Wir empfehlen jedoch,
+        vorab über unser{' '}
         <Link href="/kontakt" className="underline text-white/80 hover:text-white transition-colors">
           Kontaktformular
-        </Link>
-        , telefonisch oder direkt vor Ort im Café.
-      </>
-    ),
-  },
-  {
-    question: 'Welche Geburtstagspakete gibt es?',
-    answer: (
-      <>
-        Wir bieten ein zentrales{' '}
-        <Link href="/events#geburtstag-heading" className="underline text-white/80 hover:text-white transition-colors">
-          Geburtstagspaket
         </Link>{' '}
-        mit 3 Stunden exklusiver Nutzung für bis zu 10 Kinder. Enthalten sind Verpflegung,
-        Dekoration und eine kleine Überraschung für das Geburtstagskind.
+        anzufragen. Für unser Sonntagsfrühstück sowie für Geburtstage oder andere Feiern ist eine
+        Reservierung erforderlich.
       </>
     ),
   },
   {
-    question: 'Können Add-ons dazugebucht werden?',
+    question: 'Kann ich den Geburtstag meines Kindes bei euch feiern?',
     answer: (
       <>
-        Ja, ihr könnt eure Feier individuell erweitern – zum Beispiel mit Kinderschminken,
-        Kinderanimation, Bastelaktionen, Gastgeschenk-Tütchen oder einer individuell gestalteten
-        Torte. Eine vollständige Übersicht findet ihr auf unserer{' '}
+        Ja, selbstverständlich! Alle Informationen zu unseren Geburtstagsfeiern findet ihr auf
+        unserer{' '}
         <Link href="/events" className="underline text-white/80 hover:text-white transition-colors">
           Events-Seite
         </Link>
-        . Wir beraten euch gerne persönlich.
+        . Wir freuen uns sehr über eure Anfrage über unser{' '}
+        <Link href="/kontakt?anlass=geburtstag" className="underline text-white/80 hover:text-white transition-colors">
+          Kontaktformular
+        </Link>
+        , melden uns schnellstmöglich zurück und besprechen alles Weitere persönlich mit euch –
+        natürlich gehen wir dabei auch gerne auf individuelle Wünsche ein.
       </>
     ),
   },
@@ -83,14 +73,8 @@ const faqs = [
     question: 'Gibt es Essen für Erwachsene?',
     answer: (
       <>
-        Natürlich. Neben kinderfreundlichen Speisen bieten wir frisch gebrühten Kaffee, Cappuccino,
-        Bio-Tee, Matcha, Bagels, Quiches, Porridge, Kuchen und vegane Leckereien. Am Wochenende
-        gibt es zudem unser Familienfrühstück von 10:00 bis 14:00 Uhr. Alle Angebote findet ihr
-        auf unserer{' '}
-        <Link href="/speisekarte" className="underline text-white/80 hover:text-white transition-colors">
-          Speisekarte
-        </Link>
-        .
+        Natürlich. Neben kinderfreundlichen Speisen bieten wir auch Bagels, Waffeln mit
+        verschiedenen Toppings sowie immer wechselnde Kuchenangebote an.
       </>
     ),
   },
@@ -98,12 +82,8 @@ const faqs = [
     question: 'Gibt es spezielle Angebote für Babys?',
     answer: (
       <>
-        Ja. Für die Kleinsten gibt es unter anderem eine Mini-Waffel ohne Zucker, Babyccino, Kakao
-        oder Saft sowie altersgerechte Spielmöglichkeiten. Mehr dazu auf unserer{' '}
-        <Link href="/speisekarte" className="underline text-white/80 hover:text-white transition-colors">
-          Speisekarte
-        </Link>
-        .
+        Ja. Für die Kleinsten bieten wir einen liebevoll gestalteten Spielbereich mit
+        altersgerechten Spielmöglichkeiten, in dem sie sich frei und sicher entfalten können.
       </>
     ),
   },
@@ -126,8 +106,16 @@ const faqs = [
     question: 'Wie hoch ist der Eintrittspreis?',
     answer: (
       <>
-        Montag bis Freitag: 3,00 € pro Stunde · Samstag, Sonntag & Feiertage: 4,00 € pro Stunde ·
-        Kleinkinder bis 1 Jahr: 2,00 € · Jede weitere Stunde: 1,00 €
+        Für den Spielbereich fällt eine einmalige Gebühr von 3,00 € pro Kind an.
+      </>
+    ),
+  },
+  {
+    question: 'Gibt es einen Wickelbereich?',
+    answer: (
+      <>
+        Ja, selbstverständlich. Bei uns gibt es einen Wickelbereich, damit ihr euch auch mit
+        den Kleinsten rundum wohlfühlen könnt.
       </>
     ),
   },
@@ -135,8 +123,8 @@ const faqs = [
     question: 'Wo befindet sich das Zwerghain?',
     answer: (
       <>
-        Baseler Straße 2, 12205 Berlin-Lichterfelde. Gut erreichbar mit der S1 und dem Bus M11 bis
-        Bahnhof Lichterfelde West.{' '}
+        Ihr findet uns in der Baseler Straße 2, 12205 Berlin-Lichterfelde. Wir sind gut erreichbar
+        mit der S1 sowie dem Bus M11 bis Bahnhof Lichterfelde West.{' '}
         <a
           href="https://maps.google.com/?q=Baseler+Straße+2,+12205+Berlin"
           target="_blank"
@@ -154,11 +142,17 @@ const faqs = [
     answer: (
       <>
         Ihr erreicht uns telefonisch unter{' '}
-        <a href="tel:+493012345678" className="underline text-white/80 hover:text-white transition-colors">
+        <a
+          href="tel:+493012345678"
+          className="underline text-white/80 hover:text-white transition-colors"
+        >
           030 / 12 345 678
         </a>
         , per{' '}
-        <a href="mailto:hallo@zwerghain.com" className="underline text-white/80 hover:text-white transition-colors">
+        <a
+          href="mailto:hallo@zwerghain.com"
+          className="underline text-white/80 hover:text-white transition-colors"
+        >
           E-Mail
         </a>
         , über unser{' '}
@@ -212,7 +206,6 @@ function FAQItem({ question, answer }: { question: string; answer: React.ReactNo
 export default function FAQ() {
   return (
     <>
-
       <section
         aria-labelledby="faq-heading"
         className="relative bg-brand-green py-16 overflow-hidden"
