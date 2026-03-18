@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const CAFE_EMAIL = 'hallo@zwerghain.com'
+const CAFE_EMAIL = 'winklerphilipp2210@web.de'
 const FROM_EMAIL = 'noreply@send.zwerghain.com'
 
 // ── Allowlists ──
