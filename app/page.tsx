@@ -6,7 +6,7 @@ import FAQ from '@/components/sections/FAQ'
 import Tagline from '@/components/sections/Tagline'
 
 const tickerItems = [
-  'Öffnungszeiten: Montag Ruhetag | Dienstag bis Freitag 9 – 17:30 Uhr | Samstag, Sonntag & Feiertage 9 – 17 Uhr | Bitte beachtet: Am 21. & 22.03.2026 bleibt das Zwerghain am Nachmittag wegen einer Geburtstagsfeier geschlossen.',
+  'Öffnungszeiten: Di–Fr 9–17:30 Uhr · Sa & So 9–17 Uhr · WICHTIGER HINWEIS: Am 21. & 22.03. bleibt das Zwerghain am Nachmittag wegen einer Feier geschlossen.',
 ]
 
 export default function HomePage() {

@@ -62,7 +62,7 @@ export default function EventsPage() {
           <p className="mt-4 text-gray-700 text-base sm:text-lg leading-relaxed">
             Im Zwerghain entstehen Feiern mit Leichtigkeit: ein geschützter Raum zum Spielen,
             liebevolle Details, entspannte Abläufe und viel Zeit für schöne Erinnerungen. Für
-            Kindergeburtstage haben wir ein klares Paket vorbereitet. Baby Shower, Taufen und
+            Kindergeburtstage haben wir ein klares Paket vorbereitet. Baby Shower, Taufen oder
             Familienfeste sind auf Anfrage ebenfalls möglich.
           </p>
           </div>

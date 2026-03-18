@@ -263,6 +263,11 @@ ${emailText}
 
 Bis bald im Zwerghain!
 Euer Zwerghain-Team
+--
+Bitte antwortet nicht auf diese E-Mail.
+Bei weiteren Fragen oder Ergänzungen erreicht ihr uns unter:
+hallo@zwerghain.com
+
       `.trim(),
     })
 

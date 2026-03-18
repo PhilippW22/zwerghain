@@ -8,9 +8,9 @@ const faqs = [
     question: 'Was ist das Zwerghain?',
     answer: (
       <>
-        Das Zwerghain ist ein Kinder- und Familiencafé in Berlin-Lichterfelde mit integriertem
-        Spielraum und Eventlocation. Bei uns treffen freies Spiel, bewusster Genuss und liebevoll
-        gestaltete Feiern aufeinander.
+        Das Zwerghain ist ein liebevoll gestaltetes Kinder- und Familiencafé in Berlin-Lichterfelde
+        mit Spielbereich und Eventlocation. Hier treffen freies Spiel, Genuss und entspannte
+        Familienzeit aufeinander.
       </>
     ),
   },
@@ -18,51 +18,28 @@ const faqs = [
     question: 'Für welches Alter ist das Café geeignet?',
     answer: (
       <>
-        Unser Spielbereich richtet sich vor allem an Babys, Kleinkinder und Kinder im Vorschulalter.
-        Ältere Geschwister sind natürlich ebenfalls willkommen, solange das gemeinsame Spielen
-        respektvoll und altersgerecht gestaltet ist.
+        Unser Angebot richtet sich vor allem an Babys, Kleinkinder und Vorschulkinder. Ältere
+        Geschwister sind herzlich willkommen, solange das Miteinander respektvoll und altersgerecht
+        bleibt.
       </>
     ),
   },
   {
-    question: 'Muss ich einen Platz reservieren?',
+    question: 'Muss ich reservieren?',
     answer: (
       <>
-        Für einen regulären Cafébesuch ist keine Reservierung notwendig. Wir empfehlen jedoch,
-        vorab über unser{' '}
-        <Link href="/kontakt" className="underline text-white/80 hover:text-white transition-colors">
-          Kontaktformular
-        </Link>{' '}
-        anzufragen. Für unser Sonntagsfrühstück sowie für Geburtstage oder andere Feiern ist eine
-        Reservierung erforderlich.
+        Für einen spontanen Cafébesuch ist keine Reservierung zwingend notwendig, wir empfehlen sie
+        jedoch. Für unser Sonntagsfrühstück sowie für Feiern ist eine Reservierung erforderlich.
       </>
     ),
   },
   {
-    question: 'Kann ich den Geburtstag meines Kindes bei euch feiern?',
+    question: 'Kann ich bei euch feiern?',
     answer: (
       <>
-        Ja, selbstverständlich! Alle Informationen zu unseren Geburtstagsfeiern findet ihr auf
-        unserer{' '}
-        <Link href="/events" className="underline text-white/80 hover:text-white transition-colors">
-          Events-Seite
-        </Link>
-        . Wir freuen uns sehr über eure Anfrage über unser{' '}
+        Ja! Ob Kindergeburtstag, Taufe oder Familienfest – auch eine exklusive Anmietung ist
+        möglich. Geburtstagsanfragen stellt ihr bitte direkt über unser{' '}
         <Link href="/kontakt?anlass=geburtstag" className="underline text-white/80 hover:text-white transition-colors">
-          Kontaktformular
-        </Link>
-        , melden uns schnellstmöglich zurück und besprechen alles Weitere persönlich mit euch –
-        natürlich gehen wir dabei auch gerne auf individuelle Wünsche ein.
-      </>
-    ),
-  },
-  {
-    question: 'Kann ich das Zwerghain exklusiv mieten?',
-    answer: (
-      <>
-        Ja, für größere Feiern wie Kindergeburtstage, Taufen, Baby Shower oder Familienfeste ist
-        eine exklusive Raummiete möglich. Schreibt uns einfach über unser{' '}
-        <Link href="/kontakt?anlass=familienfest" className="underline text-white/80 hover:text-white transition-colors">
           Kontaktformular
         </Link>
         .
@@ -73,93 +50,50 @@ const faqs = [
     question: 'Gibt es Essen für Erwachsene?',
     answer: (
       <>
-        Natürlich. Neben kinderfreundlichen Speisen bieten wir auch Bagels, Waffeln mit
-        verschiedenen Toppings sowie immer wechselnde Kuchenangebote an.
+        Neben kinderfreundlichen Speisen bieten wir euch auch herzhafte und süße Waffeln, Bagels
+        sowie eine wechselnde Auswahl an Kuchen an.
       </>
     ),
   },
   {
-    question: 'Gibt es spezielle Angebote für Babys?',
+    question: 'Spielbereich & Konzept',
     answer: (
       <>
-        Ja. Für die Kleinsten bieten wir einen liebevoll gestalteten Spielbereich mit
-        altersgerechten Spielmöglichkeiten, in dem sie sich frei und sicher entfalten können.
+        Im Mittelpunkt steht freies, selbstbestimmtes Spielen. Kinder entdecken unsere Spielbereiche
+        in ihrem eigenen Tempo, während ihr als Eltern entspannt genießen könnt.
       </>
     ),
   },
   {
-    question: 'Wie funktioniert das Spielkonzept?',
+    question: 'Preise & Ausstattung',
     answer: (
       <>
-        Im Zwerghain steht freies, selbstbestimmtes Spielen im Mittelpunkt. Kinder entdecken in
-        ihrem eigenen Tempo verschiedene Spielbereiche, fördern Motorik, Kreativität und soziale
-        Kompetenzen, während Eltern eine entspannte Auszeit genießen können. Mehr erfahrt ihr in
-        unserem{' '}
-        <Link href="/#about-us" className="underline text-white/80 hover:text-white transition-colors">
-          Über-uns-Bereich
-        </Link>
-        .
+        Für den Spielbereich fällt eine einmalige Gebühr von 3,00 € pro Kind an. Wir legen großen
+        Wert auf ein sauberes, gepflegtes und liebevoll ausgestattetes Café, damit ihr euch rundum
+        wohlfühlen könnt. Hochstühle sowie ein Wickeltisch stehen selbstverständlich zur Verfügung.
       </>
     ),
   },
   {
-    question: 'Wie hoch ist der Eintrittspreis?',
+    question: 'Adresse & Kontakt',
     answer: (
       <>
-        Für den Spielbereich fällt eine einmalige Gebühr von 3,00 € pro Kind an.
-      </>
-    ),
-  },
-  {
-    question: 'Gibt es einen Wickelbereich?',
-    answer: (
-      <>
-        Ja, selbstverständlich. Bei uns gibt es einen Wickelbereich, damit ihr euch auch mit
-        den Kleinsten rundum wohlfühlen könnt.
-      </>
-    ),
-  },
-  {
-    question: 'Wo befindet sich das Zwerghain?',
-    answer: (
-      <>
-        Ihr findet uns in der Baseler Straße 2, 12205 Berlin-Lichterfelde. Wir sind gut erreichbar
-        mit der S1 sowie dem Bus M11 bis Bahnhof Lichterfelde West.{' '}
-        <a
-          href="https://maps.google.com/?q=Baseler+Straße+2,+12205+Berlin"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-white/80 hover:text-white transition-colors"
-        >
-          Auf Google Maps anzeigen
-        </a>
-        .
-      </>
-    ),
-  },
-  {
-    question: 'Wie kann ich euch kontaktieren?',
-    answer: (
-      <>
-        Ihr erreicht uns telefonisch unter{' '}
-        <a
-          href="tel:+493012345678"
-          className="underline text-white/80 hover:text-white transition-colors"
-        >
-          030 / 12 345 678
-        </a>
-        , per{' '}
-        <a
-          href="mailto:hallo@zwerghain.com"
-          className="underline text-white/80 hover:text-white transition-colors"
-        >
-          E-Mail
-        </a>
-        , über unser{' '}
+        Baseler Straße 2, 12205 Berlin-Lichterfelde. Gut erreichbar mit der S1 sowie dem Bus M11
+        bis Bahnhof Lichterfelde West. Ihr erreicht uns telefonisch, per E-Mail, über unser{' '}
         <Link href="/kontakt" className="underline text-white/80 hover:text-white transition-colors">
           Kontaktformular
         </Link>{' '}
-        oder direkt vor Ort im Café. Wir beraten euch persönlich und unverbindlich.
+        oder direkt vor Ort.
+      </>
+    ),
+  },
+  {
+    question: 'Wichtige Hinweise',
+    answer: (
+      <>
+        Bitte bringt Stoppersocken oder Hausschuhe mit (bei Bedarf auch bei uns erhältlich). Eigene
+        Speisen und Getränke müssen bitte draußen bleiben – wir versorgen euch sehr gerne mit allem,
+        was ihr für eine entspannte und genussvolle Zeit bei uns braucht.
       </>
     ),
   },
