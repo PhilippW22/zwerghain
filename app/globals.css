@@ -1,10 +1,63 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'sfont';
+  src:
+    url('/fonts/sfont.woff2') format('woff2'),
+    url('/fonts/sfont.woff') format('woff'),
+    url('/fonts/sfont.ttf') format('truetype'),
+    url('/fonts/sfont.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
+  --font-sans: 'Comfortaa', system-ui, sans-serif;
+  --font-sfont: 'sfont', system-ui, sans-serif;
   --color-brand-green: #83A17D;
   --color-brand-mint: #677365;
   --color-brand-beige: #faf3e3;
-  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {

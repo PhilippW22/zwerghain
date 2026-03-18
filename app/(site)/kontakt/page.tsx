@@ -13,7 +13,6 @@ function localDateMin(): string {
 
 const anlaesse = [
   { value: '', label: 'Bitte wählen' },
-  { value: 'tisch', label: 'Tischreservierung – regulärer Betrieb' },
   { value: 'geburtstag', label: 'Kindergeburtstag' },
   { value: 'fruehstueck', label: 'Sonntagsfrühstück' },
 ]
@@ -194,8 +193,6 @@ function KontaktForm() {
   const [form, setForm] = useState({
     vorname: '', nachname: '', email: '', telefon: '', anlass: '',
     honeypot: '',
-    tisch_datum: '', tisch_stunde: '', tisch_minute: '',
-    tisch_personen: '', tisch_kind_alter: '', tisch_nachricht: '',
     gb_kind_name: '', gb_kind_alter: '', gb_datum: '',
     gb_stunde: '', gb_minute: '',
     gb_kinder: '', gb_erwachsene: '', gb_extras: [] as string[],
@@ -214,7 +211,7 @@ function KontaktForm() {
     const anlass = searchParams.get('anlass')
     const map: Record<string, string> = {
       eichhoernchen: 'geburtstag', fuchseule: 'geburtstag',
-      fruehstueck: 'fruehstueck', tisch: 'tisch',
+      fruehstueck: 'fruehstueck',
     }
     if (anlass && map[anlass] !== undefined) {
       setForm((prev) => ({ ...prev, anlass: map[anlass] }))
@@ -244,13 +241,6 @@ function KontaktForm() {
     if (!form.email.trim()) e.email = 'Bitte E-Mail-Adresse eingeben.'
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Bitte gültige E-Mail eingeben.'
     if (!form.anlass) e.anlass = 'Bitte einen Anlass wählen.'
-
-    if (form.anlass === 'tisch') {
-      if (!form.tisch_datum) e.tisch_datum = 'Bitte Datum wählen.'
-      if (!form.tisch_stunde) e.tisch_stunde = 'Bitte Uhrzeit wählen.'
-      if (!form.tisch_personen) e.tisch_personen = 'Bitte Personenanzahl wählen.'
-      if (!form.tisch_kind_alter) e.tisch_kind_alter = 'Bitte Alter wählen.'
-    }
 
     if (form.anlass === 'geburtstag') {
       if (!form.gb_kind_name.trim()) e.gb_kind_name = 'Bitte Namen eingeben.'
@@ -340,7 +330,7 @@ function KontaktForm() {
     <form ref={formRef} onSubmit={handleSubmit} noValidate aria-label="Kontaktformular"
       className="bg-white rounded-3xl shadow-sm p-6 sm:p-10 flex flex-col gap-6">
 
-      {/* ── Honeypot – visuell versteckt, aber im DOM vorhanden ── */}
+      {/* ── Honeypot ── */}
       <div
         aria-hidden="true"
         style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
@@ -398,62 +388,6 @@ function KontaktForm() {
         </select>
       </Field>
 
-      {/* ── TISCHRESERVIERUNG ── */}
-      {form.anlass === 'tisch' && (
-        <>
-          <SectionLabel>Tischreservierung</SectionLabel>
-
-          <fieldset className="flex flex-col gap-4 border-0 p-0 m-0">
-            <legend className="text-sm font-medium text-gray-700 mb-1">
-              Datum & Uhrzeit
-              <span className="block text-xs font-normal text-gray-500 mt-0.5">
-                Di–Fr 9–17 Uhr · Sa, So & Feiertage 9–17 Uhr
-              </span>
-            </legend>
-            <Field label="Datum" required error={errors.tisch_datum} htmlFor="tisch_datum">
-              <input id="tisch_datum" type="date"
-                min={localDateMin()}
-                value={form.tisch_datum}
-                onChange={e => set('tisch_datum', e.target.value)}
-                className={inputClass(errors.tisch_datum)} />
-            </Field>
-            <UhrzeitDropdown
-              idStunde="tisch_stunde"
-              stunde={form.tisch_stunde} minute={form.tisch_minute}
-              onStunde={v => set('tisch_stunde', v)} onMinute={v => set('tisch_minute', v)}
-              errorStunde={errors.tisch_stunde} required
-            />
-          </fieldset>
-
-          <Field label="Anzahl der Personen" required error={errors.tisch_personen} htmlFor="tisch_personen">
-            <select id="tisch_personen" value={form.tisch_personen}
-              onChange={e => set('tisch_personen', e.target.value)} className={inputClass(errors.tisch_personen)}>
-              <option value="">Bitte wählen</option>
-              {numOptions(1, 30, ' Person(en)').map(o =>
-                <option key={o.value} value={o.value}>{o.label}</option>)}
-            </select>
-          </Field>
-
-          <Field label="Alter des jüngsten Kindes" required error={errors.tisch_kind_alter} htmlFor="tisch_kind_alter">
-            <select id="tisch_kind_alter" value={form.tisch_kind_alter}
-              onChange={e => set('tisch_kind_alter', e.target.value)} className={inputClass(errors.tisch_kind_alter)}>
-              {kindergAlterOptionen.map(o =>
-                <option key={o.value} value={o.value}>{o.label}</option>)}
-            </select>
-          </Field>
-
-          <Field label="Besondere Wünsche oder Hinweise" htmlFor="tisch_nachricht">
-            <TextareaWithCounter
-              id="tisch_nachricht"
-              rows={4}
-              value={form.tisch_nachricht}
-              onChange={e => set('tisch_nachricht', e.target.value)}
-              maxLength={1000}
-              className={`${inputClass()} resize-none`}
-            />
-          </Field>
-        </>
-      )}
 
       {/* ── KINDERGEBURTSTAG ── */}
       {form.anlass === 'geburtstag' && (
@@ -728,7 +662,7 @@ export default function KontaktPage() {
           Schreibt uns – wir freuen uns!
         </h1>
         <p className="mt-4 text-gray-600 text-base leading-relaxed">
-          Ob Tischreservierung, Kindergeburtstag oder Sonntagsfrühstück –
+          Ob Kindergeburtstag oder Sonntagsfrühstück –
           wir antworten so schnell wie möglich und beraten euch gerne persönlich.
         </p>
       </div>

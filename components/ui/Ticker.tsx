@@ -14,7 +14,7 @@ export default function Ticker({ items }: TickerProps) {
 
   return (
     <div
-      className="bg-brand-beige overflow-hidden py-3"
+      className="bg-brand-mint overflow-hidden py-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-label="Aktuelle Informationen"
@@ -30,7 +30,7 @@ export default function Ticker({ items }: TickerProps) {
         {repeated.map((item, index) => (
           <span
             key={index}
-            className="inline-flex items-center text-sm text-gray-800"
+            className="inline-flex items-center text-sm text-white"
           >
             {item}
             <span className="mx-6 text-white/40" aria-hidden="true">·</span>

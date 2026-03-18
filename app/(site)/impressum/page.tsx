@@ -39,7 +39,7 @@ export default function ImpressumPage() {
           </address>
           <div className="mt-4 flex flex-col gap-1">
             <p><span className="font-medium">Inhaberin:</span> Linda Fitzek</p>
-            <p><span className="font-medium">Steuernummer:</span> XXX/XXX/XXXXX</p>
+            <p><span className="font-medium">Umsatzsteuer-Identifikationsnummer:</span> DE450873915</p>
             <p><span className="font-medium">Finanzamt:</span> Steglitz von Berlin</p>
           </div>
         </section>

@@ -40,7 +40,7 @@ export default function DatenschutzPage() {
           </p>
           <address className="not-italic flex flex-col gap-1 mb-3">
             <span className="font-medium text-gray-900">
-              Linda Fitzek, Lea Roggemann, Zwerghain Kindercafé & Partylocation
+              Linda Fitzek, Zwerghain Kindercafé & Partylocation
             </span>
             <span>Baseler Str. 2</span>
             <span>12205 Berlin</span>
