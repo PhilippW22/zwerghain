@@ -85,27 +85,6 @@ export default function ImpressumPage() {
           </address>
         </section>
 
-        {/* Betriebshaftpflichtversicherung */}
-        <section aria-labelledby="versicherung">
-          <h2 id="versicherung" className="text-lg font-semibold text-gray-900 mb-3">
-            Betriebshaftpflichtversicherung
-          </h2>
-          <p className="mb-2">
-            Für den Geltungsbereich der Bundesrepublik Deutschland besteht eine
-            Betriebshaftpflichtversicherung bei der:
-          </p>
-          <address className="not-italic flex flex-col gap-1">
-            <span className="font-medium text-gray-900">Name der Versicherung</span>
-            <span>Telefon: +49 XXX XXXXXXXX</span>
-            <span>
-              E-Mail:{' '}
-              <a href="mailto:info@versicherung.de" className="text-brand-green hover:underline">
-                info@versicherung.de
-              </a>
-            </span>
-          </address>
-        </section>
-
         {/* Markenhinweis */}
         <section aria-labelledby="marke">
           <h2 id="marke" className="text-lg font-semibold text-gray-900 mb-3">
