@@ -115,6 +115,36 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   )
 }
 
+function TextareaWithCounter({ id, rows, value, onChange, placeholder, maxLength, className }: {
+  id: string
+  rows: number
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  placeholder?: string
+  maxLength: number
+  className?: string
+}) {
+  const remaining = maxLength - value.length
+  const isNearLimit = remaining <= 100
+
+  return (
+    <div className="flex flex-col gap-1">
+      <textarea
+        id={id}
+        rows={rows}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        className={className}
+      />
+      <p className={`text-xs text-right ${isNearLimit ? 'text-orange-500' : 'text-gray-400'}`}>
+        {remaining} Zeichen verbleibend
+      </p>
+    </div>
+  )
+}
+
 function UhrzeitDropdown({ stunde, minute, onStunde, onMinute, errorStunde, required, idStunde }: {
   stunde: string
   minute: string
@@ -413,9 +443,14 @@ function KontaktForm() {
           </Field>
 
           <Field label="Besondere Wünsche oder Hinweise" htmlFor="tisch_nachricht">
-            <textarea id="tisch_nachricht" rows={4} value={form.tisch_nachricht}
+            <TextareaWithCounter
+              id="tisch_nachricht"
+              rows={4}
+              value={form.tisch_nachricht}
               onChange={e => set('tisch_nachricht', e.target.value)}
-              className={`${inputClass()} resize-none`} />
+              maxLength={1000}
+              className={`${inputClass()} resize-none`}
+            />
           </Field>
         </>
       )}
@@ -534,10 +569,15 @@ function KontaktForm() {
           </fieldset>
 
           <Field label="Sonstiges & weitere Fragen" htmlFor="gb_nachricht">
-            <textarea id="gb_nachricht" rows={4} value={form.gb_nachricht}
+            <TextareaWithCounter
+              id="gb_nachricht"
+              rows={4}
+              value={form.gb_nachricht}
               onChange={e => set('gb_nachricht', e.target.value)}
               placeholder="Allergien, besondere Wünsche, weitere Fragen…"
-              className={`${inputClass()} resize-none`} />
+              maxLength={1500}
+              className={`${inputClass()} resize-none`}
+            />
           </Field>
         </>
       )}
@@ -610,10 +650,15 @@ function KontaktForm() {
           </div>
 
           <Field label="Besondere Wünsche oder Hinweise" htmlFor="fs_nachricht">
-            <textarea id="fs_nachricht" rows={3} value={form.fs_nachricht}
+            <TextareaWithCounter
+              id="fs_nachricht"
+              rows={3}
+              value={form.fs_nachricht}
               onChange={e => set('fs_nachricht', e.target.value)}
               placeholder="Allergien, Unverträglichkeiten, sonstige Wünsche…"
-              className={`${inputClass()} resize-none`} />
+              maxLength={1000}
+              className={`${inputClass()} resize-none`}
+            />
           </Field>
         </>
       )}
