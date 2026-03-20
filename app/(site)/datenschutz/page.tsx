@@ -52,8 +52,8 @@ export default function DatenschutzPage() {
             </span>
             <span>
               Telefon:{' '}
-              <a href="tel:+493012345678" className="text-brand-green hover:underline">
-                +49 30 12 345 678
+              <a href="tel:+4917647624019" className="text-brand-green hover:underline">
+                0176 / 476 24 019
               </a>
             </span>
           </address>

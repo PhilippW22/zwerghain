@@ -28,15 +28,15 @@ export default function Hero() {
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-6xl w-full mx-auto px-4 lg:px-2">
           <div className="max-w-xl">
-  <h1
-    id="hero-heading"
-    style={{ fontFamily: 'sfont, system-ui, sans-serif', color: '#677365' }}
-    className="text-3xl lg:text-4xl xl:text-5xl text-gray-900 leading-snug"
-  >
-    Willkommen im Zwerghain,
-    Eurem Eltern-Kind-Café
-    in Berlin-Lichterfelde.
-  </h1>
+          <h1
+            id="hero-heading"
+            style={{ fontFamily: 'sfont, system-ui, sans-serif' }}
+            className="text-3xl lg:text-4xl xl:text-5xl text-brand-mint leading-snug"
+          >
+            Willkommen im Zwerghain,
+            Eurem Eltern-Kind-Café
+            in Berlin-Lichterfelde.
+          </h1>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/#about-us"
@@ -76,7 +76,7 @@ export default function Hero() {
           <h1
             id="hero-heading"
             style={{ fontFamily: 'sfont, system-ui, sans-serif' }}
-            className="text-2xl text-gray-900 leading-snug"
+            className="text-2xl text-brand-mint leading-snug"
           >
             Willkommen im Zwerghain,<br />
             Eurem Eltern-Kind-Café<br />

@@ -27,7 +27,7 @@ export default function Visit() {
               12205 Berlin-Lichterfelde
             </p>
             <a
-              href="https://maps.google.com/?q=Baseler+Straße+2,+12205+Berlin"
+              href="https://maps.app.goo.gl/Zv5Bt6G9AzL6SMrG8"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-1 inline-flex items-center gap-1.5 text-sm text-brand-green underline hover:text-brand-green/80 transition-colors w-fit"
@@ -70,7 +70,7 @@ export default function Visit() {
               <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>
-              030 / 12 345 678
+              0176 / 476 24 019
             </a>
             <a
               href="mailto:hallo@zwerghain.com"
@@ -99,7 +99,7 @@ export default function Visit() {
               <p className="text-gray-600 text-sm">12205 Berlin-Lichterfelde</p>
             </div>
             <a
-              href="https://maps.google.com/?q=Baseler+Straße+2,+12205+Berlin"
+              href="https://maps.app.goo.gl/Zv5Bt6G9AzL6SMrG8"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-block bg-brand-green text-white px-6 py-3 rounded-2xl text-sm font-medium hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"

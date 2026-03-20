@@ -17,11 +17,11 @@ export default function Footer() {
             <p>Baseler Str. 2<br />12205 Berlin</p>
             <p>
               <a
-                href="tel:+493012345678"
+                href="tel:+4917647624019"
                 className="hover:text-white transition-colors"
                 aria-label="Telefonnummer anrufen"
               >
-                030 / 12 345 678
+                0176 / 476 24 019
               </a>
             </p>
             <p>

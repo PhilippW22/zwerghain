@@ -26,8 +26,8 @@ export default function ImpressumPage() {
             <span>12205 Berlin</span>
             <span>
               Telefon:{' '}
-              <a href="tel:+493012345678" className="text-brand-green hover:underline">
-                +49 30 12 345 678
+              <a href="tel:+4917647624019" className="text-brand-green hover:underline">
+                0176 / 476 24 019
               </a>
             </span>
             <span>
@@ -73,7 +73,7 @@ export default function ImpressumPage() {
             <span>
               Telefon:{' '}
               <a href="tel:+4930902990" className="text-brand-green hover:underline">
-                +49 30 90299-0
+                030 90299-0
               </a>
             </span>
             <span>
