@@ -7,7 +7,7 @@ import Tagline from '@/components/sections/Tagline'
 import Visit from '@/components/sections/Visit'
 
 const tickerItems = [
-  'Öffnungszeiten: Di–Fr 9–17:30 Uhr · Sa & So 9–17 Uhr · WICHTIGER HINWEIS: Am 21. & 22.03. bleibt das Zwerghain am Nachmittag wegen einer Feier geschlossen.',
+  'Öffnungszeiten: Di–Fr 9–17:30 Uhr · Sa & So 9–17 Uhr · HINWEIS: An folgenden Tagen bleibt das Zwerghain nachmittags geschlossen: 21.03. · 11.04. · 18.04.',
 ]
 
 export default function HomePage() {
