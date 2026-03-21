@@ -400,7 +400,7 @@ function KontaktForm() {
                 onChange={e => set('gb_kind_name', e.target.value)}
                 className={inputClass(errors.gb_kind_name)} />
             </Field>
-            <Field label="Wie alt wird das Geburtstagskind?" required error={errors.gb_kind_alter} htmlFor="gb_kind_alter">
+            <Field label="Alter des Geburtstagskindes" required error={errors.gb_kind_alter} htmlFor="gb_kind_alter">
               <select id="gb_kind_alter" value={form.gb_kind_alter}
                 onChange={e => set('gb_kind_alter', e.target.value)} className={inputClass(errors.gb_kind_alter)}>
                 <option value="">Bitte wählen</option>
