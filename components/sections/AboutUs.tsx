@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const galleryImages = [
   { src: '/images/gallery1.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 1' },
@@ -18,6 +18,13 @@ export default function AboutUs() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const touchStartX = useRef<number | null>(null)
   const touchEndX = useRef<number | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (lightboxIndex !== null) {
+      closeButtonRef.current?.focus()
+    }
+  }, [lightboxIndex])
 
   const openLightbox = (index: number) => setLightboxIndex(index)
   const closeLightbox = () => setLightboxIndex(null)
@@ -166,6 +173,7 @@ export default function AboutUs() {
           tabIndex={-1}
         >
           <button
+            ref={closeButtonRef}
             onClick={closeLightbox}
             aria-label="Galerie schließen"
             className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -195,24 +203,26 @@ export default function AboutUs() {
             </div>
 
             <div className="hidden sm:flex absolute inset-0 items-center justify-between px-4 pointer-events-none">
-              <div
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white pointer-events-auto cursor-pointer"
+              <button
+                type="button"
                 onClick={(e) => { e.stopPropagation(); prev() }}
-                aria-hidden="true"
+                aria-label="Vorheriges Bild"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white pointer-events-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
-              </div>
-              <div
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white pointer-events-auto cursor-pointer"
+              </button>
+              <button
+                type="button"
                 onClick={(e) => { e.stopPropagation(); next() }}
-                aria-hidden="true"
+                aria-label="Nächstes Bild"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white pointer-events-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
-              </div>
+              </button>
             </div>
 
             <p className="text-center text-white/60 text-sm mt-3">

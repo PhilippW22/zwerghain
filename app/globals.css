@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: 'sfont';
+  src:
+    url('/fonts/sfont.woff2') format('woff2'),
+    url('/fonts/sfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Comfortaa';
   src: url('/fonts/Comfortaa-Light.ttf') format('truetype');
   font-weight: 300;
@@ -36,18 +46,6 @@
   font-family: 'Comfortaa';
   src: url('/fonts/Comfortaa-Bold.ttf') format('truetype');
   font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'sfont';
-  src:
-    url('/fonts/sfont.woff2') format('woff2'),
-    url('/fonts/sfont.woff') format('woff'),
-    url('/fonts/sfont.ttf') format('truetype'),
-    url('/fonts/sfont.otf') format('opentype');
-  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }

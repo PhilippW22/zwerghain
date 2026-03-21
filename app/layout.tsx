@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Zwerghain',
   },
   description: 'Willkommen im Zwerghain – Euer gemütliches Eltern-Kind-Café.',
-  metadataBase: new URL('https://zwerghain.de'),
+  metadataBase: new URL('https://zwerghain.com'),
   openGraph: {
     siteName: 'Zwerghain',
     locale: 'de_DE',

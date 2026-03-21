@@ -3,7 +3,6 @@ import Ticker from '@/components/ui/Ticker'
 import EventHighlight from '@/components/sections/EventHighlight'
 import AboutUs from '@/components/sections/AboutUs'
 import FAQ from '@/components/sections/FAQ'
-import Tagline from '@/components/sections/Tagline'
 import Visit from '@/components/sections/Visit'
 
 const tickerItems = [

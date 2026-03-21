@@ -44,14 +44,6 @@ export default function ImpressumPage() {
           </div>
         </section>
 
-        {/* Redaktionell verantwortlich */}
-        <section aria-labelledby="redaktion">
-          <h2 id="redaktion" className="text-lg font-semibold text-gray-900 mb-3">
-            Redaktionell verantwortlich
-          </h2>
-          <p>Linda Fitzek, Lea Roggemann</p>
-        </section>
-
         {/* Gestaltung */}
         <section aria-labelledby="gestaltung">
           <h2 id="gestaltung" className="text-lg font-semibold text-gray-900 mb-3">

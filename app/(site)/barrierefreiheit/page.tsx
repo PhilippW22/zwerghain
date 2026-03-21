@@ -20,18 +20,11 @@ export default function BarrierefreiheitPage() {
             Einleitung
           </h2>
           <p className="mb-3">
-            Das Zwerghain ist bestrebt, seine Website barrierefrei zugänglich zu machen.
-            Diese Erklärung zur Barrierefreiheit gilt für die Website:{' '}
-            <a
-              href="https://www.zwerghain.com"
-              className="text-brand-green hover:underline"
-            >
-              www.zwerghain.com
-            </a>
+            Das Zwerghain ist bemüht, seine Website möglichst barrierefrei zugänglich zu machen.
           </p>
           <p>
-            Die Anforderungen der Barrierefreiheit orientieren sich an den Erfolgskriterien
-            der WCAG 2.1, Konformitätsstufe AA.
+            Wir orientieren uns dabei an den Empfehlungen der WCAG 2.1 (Level AA),
+            um eine gute Nutzbarkeit für möglichst viele Menschen zu gewährleisten.
           </p>
         </section>
 
@@ -41,8 +34,7 @@ export default function BarrierefreiheitPage() {
             1. Stand der Barrierefreiheit
           </h2>
           <p className="mb-4">
-            Diese Website wurde mit besonderem Augenmerk auf digitale Barrierefreiheit
-            entwickelt. Folgende Maßnahmen wurden umgesetzt:
+            Wir haben verschiedene Maßnahmen umgesetzt, um die Zugänglichkeit der Website zu verbessern:
           </p>
           <div className="flex flex-col gap-3">
             {[
@@ -52,11 +44,11 @@ export default function BarrierefreiheitPage() {
               },
               {
                 titel: 'Screenreader-Unterstützung',
-                text: 'Alle Inhalte sind mit semantischem HTML strukturiert. Bilder haben beschreibende Alternativtexte. Formulare sind mit korrekten Labels und ARIA-Attributen (aria-label, aria-describedby, aria-invalid) ausgestattet.',
+                text: 'Formulare sind mit Labels und unterstützenden Attributen versehen, um die Nutzung mit Screenreadern zu unterstützen',
               },
               {
                 titel: 'Kontrast',
-                text: 'Texte und interaktive Elemente erfüllen die Kontrastanforderungen gemäß WCAG 2.1 AA (Mindestverhältnis 4,5:1 für normalen Text).',
+                text: 'Kontraste wurden so gewählt, dass sie gut lesbar sind und sich an den Empfehlungen der WCAG orientieren.',
               },
               {
                 titel: 'Reduzierte Bewegung',
@@ -131,8 +123,8 @@ export default function BarrierefreiheitPage() {
             </span>
             <span>
               Telefon:{' '}
-              <a href="tel:+493012345678" className="text-brand-green hover:underline">
-                +49 30 12 345 678
+              <a href="tel:+4917647624019" className="text-brand-green hover:underline">
+                0176 / 476 24 019
               </a>
             </span>
           </address>

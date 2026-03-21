@@ -2,18 +2,47 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const navLinks = [
   { href: '/', label: 'Start' },
   { href: '/events', label: 'Feiern & Geburtstage' },
-  { href: '/breakfast', label: 'Sonntagsfrühstück' },
+  { href: '/sonntagsfruehstueck', label: 'Sonntagsfrühstück' },
   { href: '/#about-us', label: 'Über uns' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const burgerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(e.target as Node)
+      ) {
+        setMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [menuOpen])
 
   return (
     <header className="sticky top-0 z-40 bg-brand-green border-b border-white/10">
@@ -63,6 +92,7 @@ export default function Header() {
 
         {/* Mobile Burger */}
         <button
+          ref={burgerRef}
           className="min-[930px]:hidden p-2 rounded-md text-white hover:text-white/80"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-expanded={menuOpen}
@@ -80,7 +110,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div id="mobile-menu" className="min-[930px]:hidden bg-brand-green border-t border-white/10 px-4 pb-4">
+        <div ref={menuRef} id="mobile-menu" className="min-[930px]:hidden bg-brand-green border-t border-white/10 px-4 pb-4">
           <ul className="flex flex-col gap-3 pt-3" role="list">
             {navLinks.map((link) => (
               <li key={link.href}>

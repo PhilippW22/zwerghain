@@ -5,11 +5,10 @@ const CAFE_EMAIL = 'hallo@zwerghain.com'
 const FROM_EMAIL = 'noreply@zwerghain.com'
 
 // ── Allowlists ──
-const ALLOWED_ANLASS = ['tisch', 'geburtstag', 'fruehstueck']
+const ALLOWED_ANLASS = ['geburtstag', 'fruehstueck']
 const ALLOWED_KIND_ALTER = ['0-2', '2+']
 const ALLOWED_STUNDE = ['9','10','11','12','13','14','15','16','17']
 const ALLOWED_MINUTEN = ['00','15','30','45']
-const ALLOWED_PERSONEN = Array.from({ length: 30 }, (_, i) => String(i + 1))
 const ALLOWED_GB_ALTER = Array.from({ length: 12 }, (_, i) => String(i + 1))
 const ALLOWED_GB_KINDER = Array.from({ length: 10 }, (_, i) => String(i + 1))
 const ALLOWED_GB_ERWACHSENE = Array.from({ length: 16 }, (_, i) => String(i))
@@ -103,40 +102,6 @@ export async function POST(request: Request) {
 
   let emailText = ''
   let emailSubject = ''
-
-  // ── TISCHRESERVIERUNG ──
-  if (anlass === 'tisch') {
-    const datum = sanitize(b.tisch_datum, 10)
-    const stunde = sanitize(b.tisch_stunde, 2)
-    const minute = sanitize(b.tisch_minute, 2)
-    const personen = sanitize(b.tisch_personen, 10)
-    const kindAlter = sanitize(b.tisch_kind_alter, 10)
-    const nachricht = sanitize(b.tisch_nachricht, 1000)
-
-    if (!datum || !/^\d{4}-\d{2}-\d{2}$/.test(datum)) return err('Ungültiges Datum.')
-    if (!isValidDate(datum)) return err('Ungültiges Datum.')
-    if (!isNotInPast(datum)) return err('Datum liegt in der Vergangenheit.')
-    if (!ALLOWED_STUNDE.includes(stunde)) return err('Ungültige Stunde.')
-    if (!ALLOWED_MINUTEN.includes(minute)) return err('Ungültige Minute.')
-    if (!ALLOWED_PERSONEN.includes(personen)) return err('Ungültige Personenanzahl.')
-    if (!ALLOWED_KIND_ALTER.includes(kindAlter)) return err('Ungültiges Kindesalter.')
-
-    emailSubject = `Tischreservierung – ${vorname} ${nachname}`
-    emailText = `
-TISCHRESERVIERUNG
-
-Name: ${vorname} ${nachname}
-E-Mail: ${email}
-Telefon: ${telefon || '–'}
-
-Datum: ${datum}
-Uhrzeit: ${stunde.padStart(2, '0')}:${minute} Uhr
-Personen: ${personen}
-Alter jüngstes Kind: ${kindAlter}
-
-Hinweise: ${nachricht || '–'}
-    `.trim()
-  }
 
   // ── KINDERGEBURTSTAG ──
   if (anlass === 'geburtstag') {

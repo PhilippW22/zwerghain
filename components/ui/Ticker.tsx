@@ -1,6 +1,5 @@
 'use client'
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface TickerProps {
   items: string[]
@@ -8,8 +7,16 @@ interface TickerProps {
 
 export default function Ticker({ items }: TickerProps) {
   const [paused, setPaused] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
 
-  // 6x wiederholen statt 2x – garantiert nahtlos auf allen Screengrößen
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
   const repeated = [...items, ...items, ...items, ...items, ...items, ...items]
 
   return (
@@ -18,12 +25,11 @@ export default function Ticker({ items }: TickerProps) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-label="Aktuelle Informationen"
-      role="marquee"
     >
       <div
         className="flex whitespace-nowrap w-max"
         style={{
-          animation: 'ticker 30s linear infinite',
+          animation: reducedMotion ? 'none' : 'ticker 30s linear infinite',
           animationPlayState: paused ? 'paused' : 'running',
         }}
       >
@@ -37,14 +43,10 @@ export default function Ticker({ items }: TickerProps) {
           </span>
         ))}
       </div>
-
       <style jsx>{`
         @keyframes ticker {
           0% { transform: translateX(0); }
           100% { transform: translateX(-16.666%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          div { animation: none !important; }
         }
       `}</style>
     </div>

@@ -24,9 +24,9 @@ export default function DatenschutzPage() {
           </p>
           <p>
             Diese Website verwendet keine Tracking- oder Analyse-Tools und setzt keine
-            Werbe-Cookies. Es werden ausschließlich die Daten verarbeitet, die Sie uns über
-            das Kontaktformular aktiv mitteilen, sowie technische Daten die beim Hosting
-            anfallen.
+            Werbe-Cookies. Es werden nur die Daten verarbeitet, die Sie uns aktiv
+            über das Kontaktformular mitteilen sowie technisch notwendige Daten,
+            die beim Aufruf der Website anfallen.
           </p>
         </section>
 
@@ -90,8 +90,8 @@ export default function DatenschutzPage() {
           <p className="mb-3">
             Diese Daten werden in sogenannten Logfiles gespeichert. Der Zweck der
             Verarbeitung ist die technisch fehlerfreie Bereitstellung und Sicherheit
-            der Website. Die Speicherdauer richtet sich nach den Richtlinien von Vercel;
-            wir haben auf die genaue Speicherdauer keinen direkten Einfluss.
+            der Website. Die Speicherdauer richtet sich nach den Richtlinien des 
+            Hosting-Anbieters.
           </p>
           <p className="mb-3">
             Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO
@@ -155,10 +155,8 @@ export default function DatenschutzPage() {
           </p>
           <p className="mb-3">
             Resend verarbeitet die von Ihnen eingegebenen Daten ausschließlich zum Zweck
-            des E-Mail-Versands in unserem Auftrag. Mit Resend gelten die
-            Vertragsbedingungen des Anbieters einschließlich eines
-            Auftragsverarbeitungsvertrags (DPA) gemäß Art. 28 DSGVO, der mit der
-            Registrierung bei Resend in Kraft tritt.
+            des E-Mail-Versands in unserem Auftrag. Mit Resend besteht ein
+            Auftragsverarbeitungsverhältnis gemäß Art. 28 DSGVO.
           </p>
           <p className="mb-3">
             Resend versendet E-Mails über Server in der Region EU (Irland). Metadaten
@@ -188,8 +186,8 @@ export default function DatenschutzPage() {
             Diese Website enthält Links zu externen Websites, z. B. zu Instagram und
             Google Maps. Beim Anklicken dieser Links verlassen Sie unsere Website. Für
             die Inhalte und Datenschutzpraktiken der verlinkten Seiten sind ausschließlich
-            deren Betreiber verantwortlich. Durch das bloße Vorhandensein eines Links auf
-            unserer Website werden keine Daten an Dritte übertragen.
+            deren Betreiber verantwortlich. Erst beim Anklicken eines solchen Links werden 
+            Daten an den jeweiligen Anbieter übertragen.
           </p>
         </section>
 

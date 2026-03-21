@@ -79,7 +79,7 @@ export default function Footer() {
               {[
                 { href: '/', label: 'Start' },
                 { href: '/events', label: 'Feiern & Geburtstage' },
-                { href: '/breakfast', label: 'Sonntagsfrühstück' },
+                { href: '/sonntagsfruehstueck', label: 'Sonntagsfrühstück' },
                 { href: '/#about-us', label: 'Über uns' },
                 { href: '/kontakt', label: 'Kontakt' },
               ].map((link) => (

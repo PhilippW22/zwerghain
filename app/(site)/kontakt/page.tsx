@@ -51,11 +51,10 @@ const kindergAlterOptionen = [
 
 const stunden = Array.from({ length: 9 }, (_, i) => {
   const h = i + 9
-  return { value: String(h), label: `${String(h).padStart(2, '0')} Uhr` }
+  return { value: String(h), label: `${String(h).padStart(2, '0')}`}
 })
 
 const minuten = [
-  { value: '', label: 'Minute' },
   { value: '00', label: ':00' },
   { value: '15', label: ':15' },
   { value: '30', label: ':30' },
@@ -194,7 +193,7 @@ function KontaktForm() {
     vorname: '', nachname: '', email: '', telefon: '', anlass: '',
     honeypot: '',
     gb_kind_name: '', gb_kind_alter: '', gb_datum: '',
-    gb_stunde: '', gb_minute: '',
+    gb_stunde: '', gb_minute: '00',
     gb_kinder: '', gb_erwachsene: '', gb_extras: [] as string[],
     gb_motto: '', gb_essen: [] as string[], gb_nachricht: '',
     fs_sonntag: '', fs_slot: '', fs_erwachsene: '', fs_kinder: '',

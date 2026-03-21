@@ -117,7 +117,7 @@ export default function EventHighlight() {
               </ul>
               <div className="mt-8">
                 <Link
-                  href="/breakfast"
+                  href="/sonntagsfruehstueck"
                   aria-label="Weitere Informationen zum Sonntagsfrühstück im Zwerghain"
                   className="inline-block bg-white text-brand-green px-6 py-3 rounded-2xl text-sm font-medium hover:bg-white/90 transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-green"
                 >
