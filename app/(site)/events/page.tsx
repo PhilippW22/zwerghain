@@ -102,7 +102,7 @@ export default function EventsPage() {
             {/* Bild absolut rechts – nur ab sm */}
           <div className="absolute top-0 right-0 w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden hidden sm:block">
             <Image
-              src="/images/event1.jpg"
+              src="/images/event1.webp"
               alt="Kindergeburtstag im Zwerghain"
               width={176}
               height={176}

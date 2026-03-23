@@ -39,8 +39,10 @@ const mottoOptionen = [
 ]
 
 const essenOptionen = [
-  { value: 'pizza', label: 'Mini-Pizzen mit Käse (auf Wunsch Salami, Schinken oder Mais)', price: '7 € / Kind' },
-  { value: 'haehnchen', label: 'Hähnchenstücke mit Pommes oder Ofenkartoffeln', price: '8 € / Kind' },
+  { value: 'pizza', label: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)', price: '7 € / Kind' },
+  { value: 'nuggets', label: 'Chicken Nuggets mit Pommes', price: '8 € / Kind' },
+  { value: 'kuchen_erwachsene', label: 'Kuchen für Erwachsene (12 Stücke)', price: '55 €' },
+  { value: 'etagere', label: 'Etagere vom Sonntagsfrühstück (für 2–3 Erwachsene)', price: '36 €' },
 ]
 
 const kindergAlterOptionen = [
@@ -414,7 +416,7 @@ function KontaktForm() {
             <legend className="text-sm font-medium text-gray-700 mb-1">
               Wunschtermin
               <span className="block text-xs font-normal text-gray-500 mt-0.5">
-                Sa & So ab 14:00 · Mi & Do ab 14:30 · weitere Termine auf Anfrage
+                Sa & So ab 14:30 · Mi & Do ab 14:30 · weitere Termine auf Anfrage
               </span>
             </legend>
             <Field label="Datum" required error={errors.gb_datum} htmlFor="gb_datum">

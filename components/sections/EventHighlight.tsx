@@ -37,14 +37,14 @@ export default function EventHighlight() {
           <div className="rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 grid grid-cols-1 md:grid-cols-2">
             <div className="relative w-full h-64 md:h-auto min-h-64">
               <Image
-                src="/images/event1.jpg"
+                src="/images/event1.webp"
                 alt="Kindergeburtstag feiern im Zwerghain – Eventlocation in Berlin-Lichterfelde"
                 fill
                 className="object-cover hidden md:block"
                 sizes="50vw"
               />
               <Image
-                src="/images/birthday2.jpg"
+                src="/images/birthday2.webp"
                 alt="Kindergeburtstag feiern im Zwerghain – Eventlocation in Berlin-Lichterfelde"
                 fill
                 className="object-cover md:hidden"
@@ -127,7 +127,7 @@ export default function EventHighlight() {
             </div>
             <div className="relative w-full h-64 md:h-auto min-h-64 order-1 md:order-2">
               <Image
-                src="/images/hero_breakfast.jpg"
+                src="/images/hero_breakfast.webp"
                 alt="Sonntagsfrühstück im Zwerghain Eltern-Kind-Café in Berlin-Lichterfelde"
                 fill
                 className="object-cover"

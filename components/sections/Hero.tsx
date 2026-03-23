@@ -62,7 +62,7 @@ export default function Hero() {
         {/* Bild über volle Breite, kein Gradient */}
         <div className="relative w-full h-64 sm:h-80">
           <Image
-            src="/images/herodesktop7.svg"
+            src="/images/herodesktop7.webp"
             alt="Spielbereich im Zwerghain – Eltern-Kind-Café in Berlin-Lichterfelde"
             fill
             priority

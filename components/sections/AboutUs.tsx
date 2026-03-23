@@ -4,14 +4,14 @@ import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 
 const galleryImages = [
-  { src: '/images/gallery1.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 1' },
-  { src: '/images/gallery2.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 2' },
-  { src: '/images/gallery3.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 3' },
-  { src: '/images/gallery4.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 4' },
-  { src: '/images/gallery5.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 5' },
-  { src: '/images/gallery6.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 6' },
-  { src: '/images/gallery7.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 7' },
-  { src: '/images/gallery8.jpg', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 8' },
+  { src: '/images/gallery1.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 1' },
+  { src: '/images/gallery2.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 2' },
+  { src: '/images/gallery3.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 3' },
+  { src: '/images/gallery4.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 4' },
+  { src: '/images/gallery5.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 5' },
+  { src: '/images/gallery6.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 6' },
+  { src: '/images/gallery7.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 7' },
+  { src: '/images/gallery8.webp', alt: 'Zwerghain Eltern-Kind-Café Berlin-Lichterfelde – Impression 8' },
 ]
 
 export default function AboutUs() {
@@ -110,7 +110,7 @@ export default function AboutUs() {
             {/* Bild – rechts */}
             <div className="relative w-full min-h-72 md:min-h-full order-2">
               <Image
-                src="/images/aboutus.jpg"
+                src="/images/aboutus.webp"
                 alt="Spielbereich im Zwerghain Eltern-Kind-Café in Berlin-Lichterfelde"
                 fill
                 className="object-cover"

@@ -14,7 +14,7 @@ const ALLOWED_GB_KINDER = Array.from({ length: 10 }, (_, i) => String(i + 1))
 const ALLOWED_GB_ERWACHSENE = Array.from({ length: 16 }, (_, i) => String(i))
 const ALLOWED_GB_EXTRAS = ['kinderschminken','animation','basteln','gastgeschenk','einladungskarten','torte','prinzessin_held']
 const ALLOWED_GB_MOTTO = ['','prinzessin','pirat','superhelden','pawpatrol','dinosaurier','einhorn','sonstiges']
-const ALLOWED_GB_ESSEN = ['pizza','haehnchen']
+const ALLOWED_GB_ESSEN = ['pizza', 'nuggets', 'kuchen_erwachsene', 'etagere']
 const ALLOWED_FS_SLOT = ['9:00','11:00']
 const ALLOWED_FS_PERSONEN = Array.from({ length: 8 }, (_, i) => String(i + 1))
 const ALLOWED_FS_KINDER = Array.from({ length: 9 }, (_, i) => String(i))
@@ -55,8 +55,10 @@ function formatExtras(extras: string[]): string {
 
 function formatEssen(essen: string[]): string {
   const map: Record<string, string> = {
-    pizza: 'Mini-Pizzen',
-    haehnchen: 'Hähnchenstücke mit Pommes/Ofenkartoffeln',
+    pizza: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)',
+    nuggets: 'Chicken Nuggets mit Pommes',
+    kuchen_erwachsene: 'Kuchen für Erwachsene (12 Stücke)',
+    etagere: 'Etagere vom Sonntagsfrühstück (für 2–3 Erwachsene)',
   }
   return essen.map(e => map[e] || e).join(', ') || '–'
 }
