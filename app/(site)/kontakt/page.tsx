@@ -41,8 +41,6 @@ const mottoOptionen = [
 const essenOptionen = [
   { value: 'pizza', label: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)', price: '7 € / Kind' },
   { value: 'nuggets', label: 'Chicken Nuggets mit Pommes', price: '8 € / Kind' },
-  { value: 'kuchen_erwachsene', label: 'Kuchen für Erwachsene (12 Stücke)', price: '55 €' },
-  { value: 'etagere', label: 'Etagere vom Sonntagsfrühstück (für 2–3 Erwachsene)', price: '36 €' },
 ]
 
 const kindergAlterOptionen = [
