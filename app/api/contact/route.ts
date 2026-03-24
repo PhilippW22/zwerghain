@@ -57,8 +57,8 @@ function formatEssen(essen: string[]): string {
   const map: Record<string, string> = {
     pizza: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)',
     nuggets: 'Chicken Nuggets mit Pommes',
-    kuchen_erwachsene: 'Kuchen für Erwachsene (12 Stücke)',
-    etagere: 'Etagere vom Sonntagsfrühstück (für 2–3 Erwachsene)',
+    kuchen_erwachsene: 'Kuchen für Erwachsene (verschiedene Sorten, 12 Stücke)',
+    etagere: 'Herzhaft & süß belegte Etagere für Erwachsene (für 2–3 Personen)',
   }
   return essen.map(e => map[e] || e).join(', ') || '–'
 }

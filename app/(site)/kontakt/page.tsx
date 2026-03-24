@@ -41,6 +41,8 @@ const mottoOptionen = [
 const essenOptionen = [
   { value: 'pizza', label: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)', price: '7 € / Kind' },
   { value: 'nuggets', label: 'Chicken Nuggets mit Pommes', price: '8 € / Kind' },
+  { value: 'kuchen_erwachsene', label: 'Kuchen für Erwachsene (verschiedene Sorten, 12 Stücke)', price: '55 €' },
+  { value: 'etagere', label: 'Herzhaft & süß belegte Etagere für Erwachsene (für 2–3 Personen)', price: '36 €' },
 ]
 
 const kindergAlterOptionen = [
