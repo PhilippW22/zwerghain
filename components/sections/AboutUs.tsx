@@ -198,7 +198,6 @@ export default function AboutUs() {
                 fill
                 className="object-contain"
                 sizes="100vw"
-                priority
               />
             </div>
 
