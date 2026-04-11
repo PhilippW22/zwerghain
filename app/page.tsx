@@ -6,7 +6,7 @@ import FAQ from '@/components/sections/FAQ'
 import Visit from '@/components/sections/Visit'
 
 const tickerItems = [
-  'Oster-Öffnungszeiten: Karfreitag, Ostermontag & Di (07.04.) geschlossen | Sa & So geöffnet | Am Ostersonntag wartet unser Osterfrühstück auf euch – bitte vorab reservieren.',
+  'Sonderöffnungszeiten (11.–15.04.): 11.04. geschlossen · 12.04. nur für Familienfrühstück (9-13 Uhr) geöffnet - es gibt noch freie Plätze, bitte reservieren. · Di (14.04.) geschlossen · Mi (15.04.) ab 14 Uhr geöffnet',
 ]
 
 export default function HomePage() {
