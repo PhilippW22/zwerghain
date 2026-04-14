@@ -247,7 +247,6 @@ function KontaktForm() {
       if (!form.gb_kind_name.trim()) e.gb_kind_name = 'Bitte Namen eingeben.'
       if (!form.gb_kind_alter) e.gb_kind_alter = 'Bitte Alter wählen.'
       if (!form.gb_datum) e.gb_datum = 'Bitte Datum wählen.'
-      if (!form.gb_stunde) e.gb_stunde = 'Bitte Uhrzeit wählen.'
       if (!form.gb_kinder) e.gb_kinder = 'Bitte Anzahl wählen.'
       if (!form.gb_erwachsene) e.gb_erwachsene = 'Bitte Anzahl wählen.'
     }

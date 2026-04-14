@@ -7,8 +7,6 @@ const FROM_EMAIL = 'noreply@zwerghain.com'
 // ── Allowlists ──
 const ALLOWED_ANLASS = ['geburtstag', 'fruehstueck']
 const ALLOWED_KIND_ALTER = ['0-2', '2+']
-const ALLOWED_STUNDE = ['9','10','11','12','13','14','15','16','17']
-const ALLOWED_MINUTEN = ['00','15','30','45']
 const ALLOWED_GB_ALTER = Array.from({ length: 12 }, (_, i) => String(i + 1))
 const ALLOWED_GB_KINDER = Array.from({ length: 10 }, (_, i) => String(i + 1))
 const ALLOWED_GB_ERWACHSENE = Array.from({ length: 16 }, (_, i) => String(i))
@@ -110,8 +108,6 @@ export async function POST(request: Request) {
     const kindName = sanitize(b.gb_kind_name, 80)
     const kindAlter = sanitize(b.gb_kind_alter, 2)
     const datum = sanitize(b.gb_datum, 10)
-    const stunde = sanitize(b.gb_stunde, 2)
-    const minute = sanitize(b.gb_minute, 2)
     const kinder = sanitize(b.gb_kinder, 2)
     const erwachsene = sanitize(b.gb_erwachsene, 2)
     const motto = sanitize(b.gb_motto, 20)
