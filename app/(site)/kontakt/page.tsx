@@ -637,7 +637,7 @@ function KontaktForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-brand-green text-white px-6 py-4 rounded-2xl text-base font-bold hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 mt-2 disabled:opacity-60"
+            className="w-full bg-brand-green text-white px-6 py-4 rounded-2xl text-base font-bold hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 mt-2 disabled:opacity-60  cursor-pointer"
           >
             {loading ? 'Wird gesendet…' : 'Anfrage absenden'}
           </button>
