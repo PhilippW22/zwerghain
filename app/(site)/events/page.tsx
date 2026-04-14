@@ -143,7 +143,7 @@ export default function EventsPage() {
             <div className="bg-white/10 border border-white/20 rounded-2xl px-5 py-5 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
               <div>
                 <p className="text-xs uppercase tracking-widest text-white/50 mb-1">Paketpreis</p>
-                <p className="text-4xl font-bold text-white">299 €</p>
+                <p className="text-4xl font-bold text-white">329 €</p>
               </div>
               <p className="text-sm text-white/70 leading-relaxed sm:max-w-[280px]">
                 Inkl. Grundpaket für eure Feier. Speisen & Getränke für Erwachsene werden nach

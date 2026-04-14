@@ -18,8 +18,8 @@ const anlaesse = [
 ]
 
 const birthdayExtras = [
-  { value: 'kinderschminken', label: 'Kinderschminken', price: '65 € / Stunde' },
-  { value: 'animation', label: 'Kinderanimation', price: '45 € / Stunde' },
+  { value: 'kinderschminken', label: 'Kinderschminken', price: 'auf Anfrage' },
+  { value: 'animation', label: 'Kinderanimation', price: 'auf Anfrage' },
   { value: 'basteln', label: 'Bastelaktionen', price: '13 € / Kind' },
   { value: 'gastgeschenk', label: 'Gastgeschenk-Tütchen', price: '10 €' },
   { value: 'einladungskarten', label: 'Einladungskarten', price: '10 €' },
@@ -42,7 +42,7 @@ const essenOptionen = [
   { value: 'pizza', label: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)', price: '7 € / Kind' },
   { value: 'nuggets', label: 'Chicken Nuggets mit Pommes', price: '8 € / Kind' },
   { value: 'kuchen_erwachsene', label: 'Kuchen für Erwachsene (verschiedene Sorten, 12 Stücke)', price: '55 €' },
-  { value: 'etagere', label: 'Herzhaft & süß belegte Etagere für Erwachsene (für 2–3 Personen)', price: '36 €' },
+  { value: 'etagere', label: 'Herzhaft & süß belegte Etagere für Erwachsene (für 2–3 Personen)', price: '38 €' },
 ]
 
 const kindergAlterOptionen = [
@@ -426,12 +426,6 @@ function KontaktForm() {
                 onChange={e => set('gb_datum', e.target.value)}
                 className={inputClass(errors.gb_datum)} />
             </Field>
-            <UhrzeitDropdown
-              idStunde="gb_stunde"
-              stunde={form.gb_stunde} minute={form.gb_minute}
-              onStunde={v => set('gb_stunde', v)} onMinute={v => set('gb_minute', v)}
-              errorStunde={errors.gb_stunde} required
-            />
           </fieldset>
 
           <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-0 p-0 m-0">
@@ -455,7 +449,7 @@ function KontaktForm() {
           </fieldset>
 
           <Field label="Motto-Dekoration" htmlFor="gb_motto"
-            hint="Waldtier-Motto ist kostenlos enthalten. Individuelles Motto: 35 € pauschal.">
+            hint="Waldtier-Motto ist kostenlos enthalten. Individuelles Motto: 50 € pauschal.">
             <select id="gb_motto" value={form.gb_motto}
               onChange={e => set('gb_motto', e.target.value)} className={inputClass()}>
               {mottoOptionen.map(o =>

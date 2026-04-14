@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const CAFE_EMAIL = 'hallo@zwerghain.com'
+const CAFE_EMAIL = 'winklerphilipp2210@web.de'
 const FROM_EMAIL = 'noreply@zwerghain.com'
 
 // ── Allowlists ──
@@ -122,8 +122,6 @@ export async function POST(request: Request) {
     if (!datum || !/^\d{4}-\d{2}-\d{2}$/.test(datum)) return err('Ungültiges Datum.')
     if (!isValidDate(datum)) return err('Ungültiges Datum.')
     if (!isNotInPast(datum)) return err('Datum liegt in der Vergangenheit.')
-    if (!ALLOWED_STUNDE.includes(stunde)) return err('Ungültige Stunde.')
-    if (!ALLOWED_MINUTEN.includes(minute)) return err('Ungültige Minute.')
     if (!ALLOWED_GB_KINDER.includes(kinder)) return err('Ungültige Kinderanzahl.')
     if (!ALLOWED_GB_ERWACHSENE.includes(erwachsene)) return err('Ungültige Erwachsenenanzahl.')
     if (!ALLOWED_GB_MOTTO.includes(motto)) return err('Ungültiges Motto.')
@@ -145,7 +143,7 @@ Telefon: ${telefon || '–'}
 
 Geburtstagskind: ${kindName}, wird ${kindAlter} Jahre alt
 Datum: ${datum}
-Uhrzeit: ${stunde.padStart(2, '0')}:${minute} Uhr
+Uhrzeit: ab 14:30
 Kinder: ${kinder}
 Erwachsene: ${erwachsene}
 
