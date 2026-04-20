@@ -50,7 +50,7 @@ export default function Visit() {
               <span>Sa & So</span>
               <span>9:00 – 17:00 Uhr</span>
               <span className="col-span-2 text-xs text-gray-400 -mt-0.5">
-                <a href="/breakfast" className="underline hover:text-brand-green transition-colors">
+                <a href="/sonntagsfruehstueck" className="underline hover:text-brand-green transition-colors">
                 Sonntagsfrühstück nur mit Reservierung
                 </a>
               </span>
