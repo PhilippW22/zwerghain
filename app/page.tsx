@@ -6,7 +6,7 @@ import FAQ from '@/components/sections/FAQ'
 import Visit from '@/components/sections/Visit'
 
 const tickerItems = [
-  'Öffnungszeiten: Di 14–17:30 Uhr · Mi–Fr 9–17:30 Uhr · Sa & So 9–17 Uhr · Mo Ruhetag · Sonntagsfrühstück 9-13 Uhr nur mit Reservierung · Aktueller Hinweis: Diese Woche Samstag (25.04.) von 9–12:30 Uhr geöffnet',
+  'Öffnungszeiten: Di 14–17:30 Uhr · Mi–Fr 9–17:30 Uhr · Sa & So 9–17 Uhr · Mo Ruhetag · Sonntagsfrühstück 9-13 Uhr nur mit Reservierung · Aktueller Hinweis: Diese Woche Samstag (25.04.) von 9–12:00 Uhr geöffnet',
 ]
 
 export default function HomePage() {
