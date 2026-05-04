@@ -515,6 +515,18 @@ function KontaktForm() {
         <>
           <SectionLabel>Sonntagsfrühstück</SectionLabel>
 
+ {/* Preishinweis */}
+ <div className="bg-brand-green/5 rounded-2xl px-5 py-4 flex flex-col gap-1">
+      <p className="text-sm font-medium text-brand-green">Preisinfo</p>
+      <p className="text-sm text-gray-600">
+        <span className="font-semibold text-gray-800">38,00 €</span> – Familien-Etagere für 2 Erwachsene + 1 Kind
+      </p>
+      <p className="text-sm text-gray-600">
+        <span className="font-semibold text-gray-800">+ 8,00 €</span> – jedes weitere Kind ab 2 Jahren
+      </p>
+      <p className="text-xs text-gray-400 mt-0.5">Getränke werden separat bestellt.</p>
+    </div>
+
           <Field label="Wunsch-Sonntag" required error={errors.fs_sonntag} htmlFor="fs_sonntag"
             hint="Bitte wählt einen Sonntag aus.">
             <input
