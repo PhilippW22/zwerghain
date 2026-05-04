@@ -522,7 +522,7 @@ function KontaktForm() {
         <span className="font-semibold text-gray-800">38,00 €</span> – Familien-Etagere für 2 Erwachsene + 1 Kind
       </p>
       <p className="text-sm text-gray-600">
-        <span className="font-semibold text-gray-800">+ 8,00 €</span> – jedes weitere Kind ab 2 Jahren
+        <span className="font-semibold text-gray-800">+ 8,00 €</span> – jedes weitere Kind ab 3 Jahren
       </p>
       <p className="text-xs text-gray-400 mt-0.5">Getränke werden separat bestellt.</p>
     </div>
