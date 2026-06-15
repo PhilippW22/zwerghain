@@ -50,7 +50,7 @@ const faqs = [
     question: 'Gibt es Essen für Erwachsene?',
     answer: (
       <>
-        Neben kinderfreundlichen Speisen bieten wir euch auch herzhafte und süße Waffeln, Bagels
+        Neben kinderfreundlichen Speisen bieten wir euch auch Waffeln, Bagels
         sowie eine wechselnde Auswahl an Kuchen an.
       </>
     ),
