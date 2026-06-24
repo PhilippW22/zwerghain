@@ -104,7 +104,7 @@ export default function EventHighlight() {
               </p>
               <ul className="mt-4 flex flex-col gap-2 text-white/90 text-sm sm:text-base" role="list">
                 {[
-                  'Zwei feste Slots: 9:00 – 10:30 Uhr & 11:00 – 12:30 Uhr',
+                  'Freie Ankunft zwischen 9:00 und 11:30 Uhr',
                   'Liebevoll angerichtete Frühstücks-Etagere',
                   '38,00 € für 2 Erw. + 1 Kind · jedes weitere Kind +8,00 €',
                 ].map((item) => (
