@@ -4,7 +4,6 @@ import { Resend } from 'resend'
 const CAFE_EMAIL = 'hallo@zwerghain.com'
 const FROM_EMAIL = 'noreply@zwerghain.com'
 
-// ── Allowlists ──
 const ALLOWED_ANLASS = ['geburtstag', 'fruehstueck']
 const ALLOWED_KIND_ALTER = ['0-2', '2+']
 const ALLOWED_GB_ALTER = Array.from({ length: 12 }, (_, i) => String(i + 1))
@@ -13,7 +12,7 @@ const ALLOWED_GB_ERWACHSENE = Array.from({ length: 16 }, (_, i) => String(i))
 const ALLOWED_GB_EXTRAS = ['kinderschminken','animation','basteln','gastgeschenk','einladungskarten','torte','prinzessin_held']
 const ALLOWED_GB_MOTTO = ['','prinzessin','pirat','superhelden','pawpatrol','dinosaurier','einhorn','sonstiges']
 const ALLOWED_GB_ESSEN = ['pizza', 'nuggets', 'kuchen_erwachsene', 'etagere']
-const ALLOWED_FS_SLOT = ['9:00','11:00']
+const ALLOWED_FS_ANKUNFT = ['9:00', '9:30', '10:00', '10:30', '11:00', '11:30']
 const ALLOWED_FS_PERSONEN = Array.from({ length: 8 }, (_, i) => String(i + 1))
 const ALLOWED_FS_KINDER = Array.from({ length: 9 }, (_, i) => String(i))
 
@@ -62,7 +61,6 @@ function formatEssen(essen: string[]): string {
 }
 
 export async function POST(request: Request) {
-  // ── Punkt 3: API-Key Guard ──
   if (!process.env.RESEND_API_KEY) {
     console.error('RESEND_API_KEY ist nicht gesetzt.')
     return err('Serverkonfigurationsfehler.', 500)
@@ -70,7 +68,6 @@ export async function POST(request: Request) {
 
   const resend = new Resend(process.env.RESEND_API_KEY)
 
-  // ── Punkt 2: request.json() in try/catch ──
   let body: unknown
   try {
     body = await request.json()
@@ -81,12 +78,8 @@ export async function POST(request: Request) {
   if (typeof body !== 'object' || body === null) return err('Ungültige Anfrage.')
   const b = body as Record<string, unknown>
 
-  // ── Honeypot ──
-  if (b.honeypot) {
-    return NextResponse.json({ ok: true })
-  }
+  if (b.honeypot) return NextResponse.json({ ok: true })
 
-  // ── Basisdaten ──
   const vorname = sanitize(b.vorname, 80)
   const nachname = sanitize(b.nachname, 80)
   const email = sanitize(b.email, 200)
@@ -154,7 +147,7 @@ Sonstiges: ${nachricht || '–'}
   // ── SONNTAGSFRÜHSTÜCK ──
   if (anlass === 'fruehstueck') {
     const sonntag = sanitize(b.fs_sonntag, 10)
-    const slot = sanitize(b.fs_slot, 10)
+    const ankunft = sanitize(b.fs_ankunft, 5)
     const erwachsene = sanitize(b.fs_erwachsene, 2)
     const kinder = sanitize(b.fs_kinder, 2)
     const kindAlter = sanitize(b.fs_kind_alter, 10)
@@ -166,7 +159,7 @@ Sonstiges: ${nachricht || '–'}
     if (!isNotInPast(sonntag)) return err('Datum liegt in der Vergangenheit.')
     const day = new Date(sonntag + 'T12:00:00').getDay()
     if (day !== 0) return err('Bitte einen Sonntag wählen.')
-    if (!ALLOWED_FS_SLOT.includes(slot)) return err('Ungültiger Slot.')
+    if (!ALLOWED_FS_ANKUNFT.includes(ankunft)) return err('Ungültige Ankunftszeit.')
     if (!ALLOWED_FS_PERSONEN.includes(erwachsene)) return err('Ungültige Erwachsenenanzahl.')
     if (!ALLOWED_FS_KINDER.includes(kinder)) return err('Ungültige Kinderanzahl.')
     if (!ALLOWED_KIND_ALTER.includes(kindAlter)) return err('Ungültiges Kindesalter.')
@@ -184,7 +177,7 @@ E-Mail: ${email}
 Telefon: ${telefon || '–'}
 
 Datum: ${displayDate}
-Slot: ${slot} – ${slot === '9:00' ? '10:30' : '12:30'} Uhr
+Ankunftszeit: ${ankunft} Uhr
 Erwachsene: ${erwachsene}
 Kinder: ${kinder}
 Alter jüngstes Kind: ${kindAlter}
@@ -194,7 +187,6 @@ Hinweise: ${nachricht || '–'}
     `.trim()
   }
 
-  // ── Punkt 1: E-Mail senden mit explizitem Error-Handling ──
   try {
     const { error: cafeMailError } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -228,13 +220,10 @@ Euer Zwerghain-Team
 Bitte antwortet nicht auf diese E-Mail.
 Bei weiteren Fragen oder Ergänzungen erreicht ihr uns unter:
 hallo@zwerghain.com
-
       `.trim(),
     })
 
     if (confirmMailError) {
-      // Bestätigungsmail fehlgeschlagen – Café-Mail war aber erfolgreich.
-      // Wir loggen den Fehler, geben aber trotzdem ok zurück.
       console.error('Resend Bestätigungsmail Fehler:', confirmMailError)
     }
 

@@ -26,30 +26,28 @@ export default function BreakfastPage() {
           {/* Kombinierte Card */}
           <div className="bg-white rounded-3xl shadow-sm p-6 sm:p-8 mb-8 flex flex-col gap-6">
 
-            {/* Slots */}
+            {/* Frühstückszeiten */}
             <div>
               <h2 className="text-lg font-bold text-brand-green mb-4">
                 Unsere Frühstückszeiten
               </h2>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                Jeden Sonntag bieten wir zwei feste Frühstücks-Slots an:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { slot: '9:00 – 10:30 Uhr', label: 'Erster Slot' },
-                  { slot: '11:00 – 12:30 Uhr', label: 'Zweiter Slot' },
-                ].map((item) => (
-                  <div key={item.slot} className="flex items-center gap-3 bg-brand-green/5 rounded-2xl px-5 py-4">
-                    <span className="w-2 h-2 rounded-full bg-brand-green shrink-0" aria-hidden="true" />
-                    <div>
-                      <p className="text-xs text-gray-500">{item.label}</p>
-                      <p className="font-semibold text-brand-green">{item.slot}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex items-center gap-3 bg-brand-green/5 rounded-2xl px-5 py-4 mb-3">
+                <span className="w-2 h-2 rounded-full bg-brand-green shrink-0" aria-hidden="true" />
+                <div>
+                  <p className="text-xs text-gray-500">Freie Ankunftszeit</p>
+                  <p className="font-semibold text-brand-green">zwischen 9:00 und 11:30 Uhr</p>
+                </div>
               </div>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Ihr wählt eure Wunschzeit für die Ankunft und könnt anschließend ganz entspannt bleiben –
+                bis wir um 13:00 Uhr schließen.
+              </p>
             </div>
-
+            {/* Absagehinweis */}
+            <p className="text-sm text-gray-600 leading-relaxed bg-brand-green/5 rounded-2xl px-5 py-4">
+              Falls ihr euren Termin nicht wahrnehmen könnt, sagt bitte mindestens eine Stunde vorher ab.
+              So können wir den Platz noch an eine andere Familie vergeben. Vielen Dank!
+            </p>
             {/* Trennlinie */}
             <div className="border-t border-gray-100" />
 
@@ -105,18 +103,18 @@ export default function BreakfastPage() {
             <div className="border-t border-gray-100" />
 
             {/* CTA */}
-<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-  <p className="text-sm text-gray-600 leading-relaxed">
-    Das Sonntagsfrühstück ist nur mit vorheriger Reservierung möglich.
-    Meldet euch einfach über unser Kontaktformular – wir melden uns zeitnah zurück.
-  </p>
-  <Link
-    href="/kontakt?anlass=fruehstueck"
-    className="shrink-0 inline-block bg-brand-green text-white px-6 py-3 rounded-2xl text-sm font-medium hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
-  >
-    Jetzt reservieren
-  </Link>
-</div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Das Sonntagsfrühstück ist nur mit vorheriger Reservierung möglich.
+                Meldet euch einfach über unser Kontaktformular – wir melden uns zeitnah zurück.
+              </p>
+              <Link
+                href="/kontakt?anlass=fruehstueck"
+                className="shrink-0 inline-block bg-brand-green text-white px-6 py-3 rounded-2xl text-sm font-medium hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
+              >
+                Jetzt reservieren
+              </Link>
+            </div>
 
           </div>
 

@@ -51,18 +51,6 @@ const kindergAlterOptionen = [
   { value: '2+', label: '2 Jahre oder älter' },
 ]
 
-const stunden = Array.from({ length: 9 }, (_, i) => {
-  const h = i + 9
-  return { value: String(h), label: `${String(h).padStart(2, '0')}`}
-})
-
-const minuten = [
-  { value: '00', label: ':00' },
-  { value: '15', label: ':15' },
-  { value: '30', label: ':30' },
-  { value: '45', label: ':45' },
-]
-
 function numOptions(min: number, max: number, suffix = '') {
   return Array.from({ length: max - min + 1 }, (_, i) => ({
     value: String(i + min),
@@ -145,48 +133,6 @@ function TextareaWithCounter({ id, rows, value, onChange, placeholder, maxLength
   )
 }
 
-function UhrzeitDropdown({ stunde, minute, onStunde, onMinute, errorStunde, required, idStunde }: {
-  stunde: string
-  minute: string
-  onStunde: (v: string) => void
-  onMinute: (v: string) => void
-  errorStunde?: string
-  required?: boolean
-  idStunde: string
-}) {
-  const errorId = `${idStunde}-error`
-  return (
-    <div className="flex flex-col gap-1.5">
-      <span className="text-sm font-medium text-gray-700">
-        Wunschuhrzeit{required && <span aria-hidden="true" className="text-brand-green ml-1">*</span>}
-      </span>
-      <div className="flex gap-2">
-        <select
-          id={idStunde}
-          aria-label="Stunde"
-          aria-invalid={errorStunde ? true : undefined}
-          aria-describedby={errorStunde ? errorId : undefined}
-          value={stunde}
-          onChange={e => onStunde(e.target.value)}
-          className={`flex-1 ${inputClass(errorStunde)}`}
-        >
-          <option value="">Stunde</option>
-          {stunden.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-        </select>
-        <select
-          aria-label="Minute"
-          value={minute}
-          onChange={e => onMinute(e.target.value)}
-          className={`flex-1 ${inputClass()}`}
-        >
-          {minuten.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
-        </select>
-      </div>
-      {errorStunde && <p id={errorId} role="alert" className="text-xs text-red-500">{errorStunde}</p>}
-    </div>
-  )
-}
-
 function KontaktForm() {
   const searchParams = useSearchParams()
   const formRef = useRef<HTMLFormElement>(null)
@@ -195,10 +141,9 @@ function KontaktForm() {
     vorname: '', nachname: '', email: '', telefon: '', anlass: '',
     honeypot: '',
     gb_kind_name: '', gb_kind_alter: '', gb_datum: '',
-    gb_stunde: '', gb_minute: '00',
     gb_kinder: '', gb_erwachsene: '', gb_extras: [] as string[],
     gb_motto: '', gb_essen: [] as string[], gb_nachricht: '',
-    fs_sonntag: '', fs_slot: '', fs_erwachsene: '', fs_kinder: '',
+    fs_sonntag: '', fs_ankunft: '', fs_erwachsene: '', fs_kinder: '',
     fs_kind_alter: '', fs_vegetarisch: false, fs_nachricht: '',
     datenschutz: false,
   })
@@ -258,7 +203,7 @@ function KontaktForm() {
         const day = new Date(form.fs_sonntag + 'T12:00:00').getDay()
         if (day !== 0) e.fs_sonntag = 'Bitte einen Sonntag auswählen.'
       }
-      if (!form.fs_slot) e.fs_slot = 'Bitte Slot wählen.'
+      if (!form.fs_ankunft) e.fs_ankunft = 'Bitte Ankunftszeit wählen.'
       if (!form.fs_erwachsene) e.fs_erwachsene = 'Bitte Anzahl wählen.'
       if (!form.fs_kinder) e.fs_kinder = 'Bitte Anzahl wählen.'
       if (!form.fs_kind_alter) e.fs_kind_alter = 'Bitte Alter wählen.'
@@ -388,7 +333,6 @@ function KontaktForm() {
         </select>
       </Field>
 
-
       {/* ── KINDERGEBURTSTAG ── */}
       {form.anlass === 'geburtstag' && (
         <>
@@ -515,17 +459,17 @@ function KontaktForm() {
         <>
           <SectionLabel>Sonntagsfrühstück</SectionLabel>
 
- {/* Preishinweis */}
- <div className="bg-brand-green/5 rounded-2xl px-5 py-4 flex flex-col gap-1">
-      <p className="text-sm font-medium text-brand-green">Preisinfo</p>
-      <p className="text-sm text-gray-600">
-        <span className="font-semibold text-gray-800">38,00 €</span> – Familien-Etagere für 2 Erwachsene + 1 Kind
-      </p>
-      <p className="text-sm text-gray-600">
-        <span className="font-semibold text-gray-800">+ 8,00 €</span> – jedes weitere Kind ab 3 Jahren
-      </p>
-      <p className="text-xs text-gray-400 mt-0.5">Getränke werden separat bestellt.</p>
-    </div>
+          {/* Preishinweis */}
+          <div className="bg-brand-green/5 rounded-2xl px-5 py-4 flex flex-col gap-1">
+            <p className="text-sm font-medium text-brand-green">Preisinfo</p>
+            <p className="text-sm text-gray-600">
+              <span className="font-semibold text-gray-800">38,00 €</span> – Familien-Etagere für 2 Erwachsene + 1 Kind
+            </p>
+            <p className="text-sm text-gray-600">
+              <span className="font-semibold text-gray-800">+ 8,00 €</span> – jedes weitere Kind ab 3 Jahren
+            </p>
+            <p className="text-xs text-gray-400 mt-0.5">Getränke werden separat bestellt.</p>
+          </div>
 
           <Field label="Wunsch-Sonntag" required error={errors.fs_sonntag} htmlFor="fs_sonntag"
             hint="Bitte wählt einen Sonntag aus.">
@@ -539,13 +483,18 @@ function KontaktForm() {
             />
           </Field>
 
-          <Field label="Frühstücks-Slot" required error={errors.fs_slot} htmlFor="fs_slot">
-            <select id="fs_slot" value={form.fs_slot}
-              onChange={e => set('fs_slot', e.target.value)}
-              className={inputClass(errors.fs_slot)}>
+          <Field label="Wunsch-Ankunftszeit" required error={errors.fs_ankunft} htmlFor="fs_ankunft"
+            hint="Wählt eure Ankunftszeit zwischen 9:00 und 11:30 Uhr. Ihr könnt bis 13:00 Uhr bleiben.">
+            <select id="fs_ankunft" value={form.fs_ankunft}
+              onChange={e => set('fs_ankunft', e.target.value)}
+              className={inputClass(errors.fs_ankunft)}>
               <option value="">Bitte wählen</option>
-              <option value="9:00">9:00 – 10:30 Uhr</option>
-              <option value="11:00">11:00 – 12:30 Uhr</option>
+              <option value="9:00">9:00 Uhr</option>
+              <option value="9:30">9:30 Uhr</option>
+              <option value="10:00">10:00 Uhr</option>
+              <option value="10:30">10:30 Uhr</option>
+              <option value="11:00">11:00 Uhr</option>
+              <option value="11:30">11:30 Uhr</option>
             </select>
           </Field>
 
@@ -649,7 +598,7 @@ function KontaktForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-brand-green text-white px-6 py-4 rounded-2xl text-base font-bold hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 mt-2 disabled:opacity-60  cursor-pointer"
+            className="w-full bg-brand-green text-white px-6 py-4 rounded-2xl text-base font-bold hover:bg-brand-green/90 transition-colors focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 mt-2 disabled:opacity-60 cursor-pointer"
           >
             {loading ? 'Wird gesendet…' : 'Anfrage absenden'}
           </button>
