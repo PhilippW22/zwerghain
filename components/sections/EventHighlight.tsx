@@ -107,6 +107,7 @@ export default function EventHighlight() {
                   'Freie Ankunft zwischen 9:00 und 11:30 Uhr',
                   'Liebevoll angerichtete Frühstücks-Etagere',
                   '38,00 € für 2 Erw. + 1 Kind · jedes weitere Kind +8,00 €',
+                  'Nur mit Reservierung',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-white/60 shrink-0" aria-hidden="true" />
