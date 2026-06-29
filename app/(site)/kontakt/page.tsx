@@ -484,7 +484,7 @@ function KontaktForm() {
           </Field>
 
           <Field label="Wunsch-Ankunftszeit" required error={errors.fs_ankunft} htmlFor="fs_ankunft"
-            hint="Wählt eure Ankunftszeit zwischen 9:00 und 11:30 Uhr. Ihr könnt bis 13:00 Uhr bleiben.">
+            hint="Wählt eure Ankunftszeit zwischen 9:00 und 11:30 Uhr. Ihr könnt bis 14:00 Uhr bleiben.">
             <select id="fs_ankunft" value={form.fs_ankunft}
               onChange={e => set('fs_ankunft', e.target.value)}
               className={inputClass(errors.fs_ankunft)}>

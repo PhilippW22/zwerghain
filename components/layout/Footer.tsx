@@ -49,11 +49,13 @@ export default function Footer() {
     <p className="font-medium text-white mb-1">Öffnungszeiten</p>
     <div className="grid grid-cols-[auto_1fr] gap-x-4">
       <span>Di</span>
-      <span>14:00 – 17:30 Uhr</span>
+      <span>14 – 18 Uhr</span>
       <span>Mi – Fr</span>
-      <span>9:00 – 17:30 Uhr</span>
-      <span>Sa & So</span>
-      <span>9:00 – 17:00 Uhr</span>
+      <span>9 – 14 Uhr</span>
+      <span>Sa</span>
+      <span>9 – 18 Uhr</span>
+      <span>So</span>
+      <span>9 – 14 Uhr</span>
       <span className="col-span-2 text-white/50 text-xs mt-0.5">
         <a href="/sonntagsfruehstueck" className="underline hover:text-white transition-colors">
         Sonntagsfrühstück nur mit Reservierung
@@ -64,7 +66,7 @@ export default function Footer() {
     <div className="mt-2 flex flex-col gap-0.5">
       <p className="text-white/50 text-xs leading-relaxed mt-1">
         Am Wochenende finden bei uns manchmal private Feiern statt –
-        dann schließen wir bereits um 13:00 Uhr. Aktuelle Hinweise
+        dann schließen wir bereits am Mittag. Aktuelle Hinweise
         findet ihr hier auf der Website und auf Instagram.
       </p>
     </div>

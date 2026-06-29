@@ -43,12 +43,14 @@ export default function Visit() {
           <div className="flex flex-col gap-2">
             <p className="text-sm font-semibold text-gray-700">Öffnungszeiten</p>
             <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm text-gray-600">
-              <span>Di</span>
-              <span>14:00 – 17:30 Uhr</span>
-              <span>Mi – Fr</span>
-              <span>9:00 – 17:30 Uhr</span>
-              <span>Sa & So</span>
-              <span>9:00 – 17:00 Uhr</span>
+            <span>Di</span>
+            <span>14 – 18 Uhr</span>
+            <span>Mi – Fr</span>
+            <span>9 – 14 Uhr</span>
+            <span>Sa</span>
+            <span>9 – 18 Uhr</span>
+            <span>So</span>
+            <span>9 – 14 Uhr</span>
               <span className="col-span-2 text-xs text-gray-400 -mt-0.5">
                 <a href="/sonntagsfruehstueck" className="underline hover:text-brand-green transition-colors">
                 Sonntagsfrühstück nur mit Reservierung

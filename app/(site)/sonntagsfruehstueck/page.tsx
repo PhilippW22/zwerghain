@@ -40,7 +40,7 @@ export default function BreakfastPage() {
               </div>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Ihr wählt eure Wunschzeit für die Ankunft und könnt anschließend ganz entspannt bleiben –
-                bis wir um 13:00 Uhr schließen.
+                bis wir um 14:00 Uhr schließen.
               </p>
             </div>
             {/* Absagehinweis */}
