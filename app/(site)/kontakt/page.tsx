@@ -17,6 +17,34 @@ const anlaesse = [
   { value: 'fruehstueck', label: 'Sonntagsfrühstück' },
 ]
 
+const paketOptionen = [
+  { value: '', label: 'Bitte wählen' },
+  { value: 'eichhoernchen', label: '🐿️ Eichhörnchen-Feier – 329 €' },
+  { value: 'fuchs', label: '🦊 Fuchs-Feier – 399 €' },
+  { value: 'eule', label: '🦉 Eulen-Feier – 499 €' },
+]
+
+const farbOptionen = [
+  { value: '', label: 'Bitte wählen' },
+  { value: 'pink', label: 'Pink' },
+  { value: 'lila', label: 'Lila' },
+  { value: 'gelb', label: 'Gelb' },
+  { value: 'gruen', label: 'Grün' },
+  { value: 'blau', label: 'Blau' },
+]
+
+const mottoOptionen = [
+  { value: '', label: 'Bitte wählen' },
+  { value: 'prinzessin', label: 'Prinzessin' },
+  { value: 'pirat', label: 'Pirat' },
+  { value: 'superhelden', label: 'Superhelden' },
+  { value: 'pawpatrol', label: 'Paw Patrol' },
+  { value: 'dinosaurier', label: 'Dinosaurier' },
+  { value: 'einhorn', label: 'Einhorn' },
+  { value: 'waldtiere', label: 'Waldtiere' },
+  { value: 'sonstiges', label: 'Sonstiges (bitte im Nachrichtenfeld angeben)' },
+]
+
 const birthdayExtras = [
   { value: 'kinderschminken', label: 'Kinderschminken', price: 'auf Anfrage' },
   { value: 'animation', label: 'Kinderanimation', price: 'auf Anfrage' },
@@ -25,24 +53,6 @@ const birthdayExtras = [
   { value: 'einladungskarten', label: 'Einladungskarten', price: '10 €' },
   { value: 'torte', label: 'Individuelle Geburtstagstorte', price: 'ab 120 €' },
   { value: 'prinzessin_held', label: 'Prinzessin / Superheld', price: 'auf Anfrage' },
-]
-
-const mottoOptionen = [
-  { value: '', label: 'Waldtier-Motto (inklusive)' },
-  { value: 'prinzessin', label: 'Prinzessin' },
-  { value: 'pirat', label: 'Pirat' },
-  { value: 'superhelden', label: 'Superhelden' },
-  { value: 'pawpatrol', label: 'Paw Patrol' },
-  { value: 'dinosaurier', label: 'Dinosaurier' },
-  { value: 'einhorn', label: 'Einhorn' },
-  { value: 'sonstiges', label: 'Sonstiges (bitte im Nachrichtenfeld angeben)' },
-]
-
-const essenOptionen = [
-  { value: 'pizza', label: 'Mini-Pizzen mit Käse (auf Wunsch Salami oder Schinken)', price: '7 € / Kind' },
-  { value: 'nuggets', label: 'Chicken Nuggets mit Pommes', price: '8 € / Kind' },
-  { value: 'kuchen_erwachsene', label: 'Kuchen für Erwachsene (verschiedene Sorten, 12 Stücke)', price: '55 €' },
-  { value: 'etagere', label: 'Herzhaft & süß belegte Etagere für Erwachsene (für 2–3 Personen)', price: '38 €' },
 ]
 
 const kindergAlterOptionen = [
@@ -140,12 +150,13 @@ function KontaktForm() {
   const [form, setForm] = useState({
     vorname: '', nachname: '', email: '', telefon: '', anlass: '',
     honeypot: '',
+    gb_paket: '', gb_farbe: '', gb_motto: '',
     gb_kind_name: '', gb_kind_alter: '', gb_datum: '',
     gb_kinder: '', gb_erwachsene: '', gb_extras: [] as string[],
-    gb_motto: '', gb_essen: [] as string[], gb_nachricht: '',
+    gb_nachricht: '',
     fs_sonntag: '', fs_ankunft: '', fs_erwachsene: '', fs_kinder: '',
     fs_kind_alter: '', fs_vegetarisch: false, fs_nachricht: '',
-    datenschutz: false,
+    datenschutz: false, gb_essen_warm: [] as string[],
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -155,6 +166,7 @@ function KontaktForm() {
 
   useEffect(() => {
     const anlass = searchParams.get('anlass')
+    const paket = searchParams.get('paket')
     const map: Record<string, string> = {
       eichhoernchen: 'geburtstag', fuchseule: 'geburtstag',
       fruehstueck: 'fruehstueck',
@@ -164,6 +176,9 @@ function KontaktForm() {
     } else if (anlass) {
       setForm((prev) => ({ ...prev, anlass }))
     }
+    if (paket) {
+      setForm((prev) => ({ ...prev, gb_paket: paket }))
+    }
   }, [searchParams])
 
   const set = (field: string, value: unknown) => {
@@ -172,7 +187,7 @@ function KontaktForm() {
     setServerError('')
   }
 
-  const toggleArray = (field: 'gb_extras' | 'gb_essen', value: string) => {
+  const toggleArray = (field: 'gb_extras' | 'gb_essen_warm', value: string) => {
     setServerError('')
     setForm((prev) => {
       const arr = prev[field]
@@ -189,6 +204,9 @@ function KontaktForm() {
     if (!form.anlass) e.anlass = 'Bitte einen Anlass wählen.'
 
     if (form.anlass === 'geburtstag') {
+      if (!form.gb_paket) e.gb_paket = 'Bitte ein Paket wählen.'
+      if (form.gb_paket === 'eichhoernchen' && !form.gb_farbe) e.gb_farbe = 'Bitte Farbe wählen.'
+      if ((form.gb_paket === 'fuchs' || form.gb_paket === 'eule') && !form.gb_motto) e.gb_motto = 'Bitte Motto wählen.'
       if (!form.gb_kind_name.trim()) e.gb_kind_name = 'Bitte Namen eingeben.'
       if (!form.gb_kind_alter) e.gb_kind_alter = 'Bitte Alter wählen.'
       if (!form.gb_datum) e.gb_datum = 'Bitte Datum wählen.'
@@ -275,7 +293,7 @@ function KontaktForm() {
     <form ref={formRef} onSubmit={handleSubmit} noValidate aria-label="Kontaktformular"
       className="bg-white rounded-3xl shadow-sm p-6 sm:p-10 flex flex-col gap-6">
 
-      {/* ── Honeypot ── */}
+      {/* Honeypot */}
       <div
         aria-hidden="true"
         style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
@@ -296,7 +314,7 @@ function KontaktForm() {
         Felder mit <span className="text-brand-green">*</span> sind Pflichtfelder.
       </p>
 
-      {/* ── KONTAKTDATEN ── */}
+      {/* KONTAKTDATEN */}
       <SectionLabel>Eure Kontaktdaten</SectionLabel>
 
       <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-0 p-0 m-0">
@@ -323,7 +341,7 @@ function KontaktForm() {
         </Field>
       </fieldset>
 
-      {/* ── ANLASS ── */}
+      {/* ANLASS */}
       <SectionLabel>Worum geht es?</SectionLabel>
 
       <Field label="Anlass der Anfrage" required error={errors.anlass} htmlFor="anlass">
@@ -333,11 +351,42 @@ function KontaktForm() {
         </select>
       </Field>
 
-      {/* ── KINDERGEBURTSTAG ── */}
+      {/* KINDERGEBURTSTAG */}
       {form.anlass === 'geburtstag' && (
         <>
           <SectionLabel>Kindergeburtstag</SectionLabel>
 
+          {/* Paket */}
+          <Field label="Geburtstagspaket" required error={errors.gb_paket} htmlFor="gb_paket">
+            <select id="gb_paket" value={form.gb_paket}
+              onChange={e => set('gb_paket', e.target.value)} className={inputClass(errors.gb_paket)}>
+              {paketOptionen.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+            </select>
+          </Field>
+
+          {/* Eichhörnchen – Farbauswahl */}
+          {form.gb_paket === 'eichhoernchen' && (
+            <Field label="Dekorationsfarbe" required error={errors.gb_farbe} htmlFor="gb_farbe"
+              hint="Wählt eure Wunschfarbe für die Dekoration.">
+              <select id="gb_farbe" value={form.gb_farbe}
+                onChange={e => set('gb_farbe', e.target.value)} className={inputClass(errors.gb_farbe)}>
+                {farbOptionen.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+              </select>
+            </Field>
+          )}
+
+          {/* Fuchs & Eule – Motto */}
+          {(form.gb_paket === 'fuchs' || form.gb_paket === 'eule') && (
+            <Field label="Wunsch-Motto" required error={errors.gb_motto} htmlFor="gb_motto"
+              hint="Das Motto bestimmt Dekoration, Geschirr und Kuchen.">
+              <select id="gb_motto" value={form.gb_motto}
+                onChange={e => set('gb_motto', e.target.value)} className={inputClass(errors.gb_motto)}>
+                {mottoOptionen.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+              </select>
+            </Field>
+          )}
+
+          {/* Geburtstagskind */}
           <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-0 p-0 m-0">
             <legend className="sr-only">Geburtstagskind</legend>
             <Field label="Name des Geburtstagskindes" required error={errors.gb_kind_name} htmlFor="gb_kind_name">
@@ -355,6 +404,7 @@ function KontaktForm() {
             </Field>
           </fieldset>
 
+          {/* Termin */}
           <fieldset className="flex flex-col gap-4 border-0 p-0 m-0">
             <legend className="text-sm font-medium text-gray-700 mb-1">
               Wunschtermin
@@ -371,6 +421,7 @@ function KontaktForm() {
             </Field>
           </fieldset>
 
+          {/* Gäste */}
           <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-0 p-0 m-0">
             <legend className="text-sm font-medium text-gray-700 mb-1 col-span-full">Anzahl der Gäste</legend>
             <Field label="Kinder (inkl. Geburtstagskind)" required error={errors.gb_kinder} htmlFor="gb_kinder">
@@ -391,55 +442,74 @@ function KontaktForm() {
             </Field>
           </fieldset>
 
-          <Field label="Motto-Dekoration" htmlFor="gb_motto"
-            hint="Waldtier-Motto ist kostenlos enthalten. Individuelles Motto: 50 € pauschal.">
-            <select id="gb_motto" value={form.gb_motto}
-              onChange={e => set('gb_motto', e.target.value)} className={inputClass()}>
-              {mottoOptionen.map(o =>
-                <option key={o.value} value={o.value}>{o.label}</option>)}
-            </select>
-          </Field>
+          {/* Extras */}
+<fieldset className="border-0 p-0 m-0 flex flex-col gap-2">
+  <legend className="text-sm font-medium text-gray-700 mb-1">Extras & Zusatzangebote</legend>
+  <p className="text-xs text-gray-500 -mt-1 mb-2">Mehrfachauswahl möglich</p>
+  {birthdayExtras
+    .filter(extra => !(extra.value === 'basteln' && form.gb_paket === 'eule'))
+    .map(extra => (
+      <label key={extra.value} htmlFor={`extra_${extra.value}`}
+        className="flex items-center justify-between gap-3 cursor-pointer group">
+        <span className="flex items-center gap-3">
+          <input id={`extra_${extra.value}`} type="checkbox"
+            checked={form.gb_extras.includes(extra.value)}
+            onChange={() => toggleArray('gb_extras', extra.value)}
+            className="w-4 h-4 rounded accent-brand-green cursor-pointer shrink-0" />
+          <span className="text-sm text-gray-700 group-hover:text-brand-green transition-colors">
+            {extra.label}
+          </span>
+        </span>
+        <span className="text-xs text-gray-500 whitespace-nowrap">{extra.price}</span>
+      </label>
+    ))}
+</fieldset>
 
-          <fieldset className="border-0 p-0 m-0 flex flex-col gap-2">
-            <legend className="text-sm font-medium text-gray-700 mb-1">Extras & Zusatzangebote</legend>
-            <p className="text-xs text-gray-500 -mt-1 mb-2">Mehrfachauswahl möglich</p>
-            {birthdayExtras.map(extra => (
-              <label key={extra.value} htmlFor={`extra_${extra.value}`}
-                className="flex items-center justify-between gap-3 cursor-pointer group">
-                <span className="flex items-center gap-3">
-                  <input id={`extra_${extra.value}`} type="checkbox"
-                    checked={form.gb_extras.includes(extra.value)}
-                    onChange={() => toggleArray('gb_extras', extra.value)}
-                    className="w-4 h-4 rounded accent-brand-green cursor-pointer shrink-0" />
-                  <span className="text-sm text-gray-700 group-hover:text-brand-green transition-colors">
-                    {extra.label}
-                  </span>
-                </span>
-                <span className="text-xs text-gray-500 whitespace-nowrap">{extra.price}</span>
-              </label>
-            ))}
-          </fieldset>
+          {/* Warmes Essen */}
+<fieldset className="border-0 p-0 m-0 flex flex-col gap-2">
+  <legend className="text-sm font-medium text-gray-700 mb-1">
+    {form.gb_paket === 'eule' ? 'Warmes Essen (inklusive)' : 'Optionales Essen'}
+  </legend>
+  {form.gb_paket === 'eule' && (
+    <p className="text-xs text-brand-green -mt-1 mb-2">
+      Im Eulen-Paket bereits enthalten – bitte wählt euer Wunschgericht.
+    </p>
+  )}
+  {form.gb_paket !== 'eule' && (
+    <p className="text-xs text-gray-500 -mt-1 mb-2">
+      Optional zubuchbar – Mehrfachauswahl möglich.
+    </p>
+  )}
+  {[
+    { value: 'pizza', label: 'Pizza Margherita', price: '8,00 €' },
+    { value: 'nudeln', label: 'Nudeln mit Tomatensoße', price: '7,50 €' },
+    { value: 'kartoffelecken', label: 'Kartoffelecken mit Kräuterquark', price: '7,00 €' },
+  ].map(essen => (
+    <label key={essen.value} htmlFor={`essen_warm_${essen.value}`}
+      className="flex items-center justify-between gap-3 cursor-pointer group">
+      <span className="flex items-center gap-3">
+        <input
+          id={`essen_warm_${essen.value}`}
+          type="checkbox"
+          checked={form.gb_essen_warm.includes(essen.value)}
+          onChange={() => toggleArray('gb_essen_warm', essen.value)}
+          className="w-4 h-4 rounded accent-brand-green cursor-pointer shrink-0"
+        />
+        <span className="text-sm text-gray-700 group-hover:text-brand-green transition-colors">
+          {essen.label}
+        </span>
+      </span>
+      {form.gb_paket !== 'eule' && (
+        <span className="text-xs text-gray-500 whitespace-nowrap">{essen.price}</span>
+      )}
+      {form.gb_paket === 'eule' && (
+        <span className="text-xs text-brand-green whitespace-nowrap">inklusive</span>
+      )}
+    </label>
+  ))}
+</fieldset>
 
-          <fieldset className="border-0 p-0 m-0 flex flex-col gap-2">
-            <legend className="text-sm font-medium text-gray-700 mb-1">Optionales Essen</legend>
-            <p className="text-xs text-gray-500 -mt-1 mb-2">Mehrfachauswahl möglich</p>
-            {essenOptionen.map(essen => (
-              <label key={essen.value} htmlFor={`essen_${essen.value}`}
-                className="flex items-center justify-between gap-3 cursor-pointer group">
-                <span className="flex items-center gap-3">
-                  <input id={`essen_${essen.value}`} type="checkbox"
-                    checked={form.gb_essen.includes(essen.value)}
-                    onChange={() => toggleArray('gb_essen', essen.value)}
-                    className="w-4 h-4 rounded accent-brand-green cursor-pointer shrink-0" />
-                  <span className="text-sm text-gray-700 group-hover:text-brand-green transition-colors">
-                    {essen.label}
-                  </span>
-                </span>
-                <span className="text-xs text-gray-500 whitespace-nowrap">{essen.price}</span>
-              </label>
-            ))}
-          </fieldset>
-
+          {/* Nachricht */}
           <Field label="Sonstiges & weitere Fragen" htmlFor="gb_nachricht">
             <TextareaWithCounter
               id="gb_nachricht"
@@ -454,12 +524,11 @@ function KontaktForm() {
         </>
       )}
 
-      {/* ── SONNTAGSFRÜHSTÜCK ── */}
+      {/* SONNTAGSFRÜHSTÜCK */}
       {form.anlass === 'fruehstueck' && (
         <>
           <SectionLabel>Sonntagsfrühstück</SectionLabel>
 
-          {/* Preishinweis */}
           <div className="bg-brand-green/5 rounded-2xl px-5 py-4 flex flex-col gap-1">
             <p className="text-sm font-medium text-brand-green">Preisinfo</p>
             <p className="text-sm text-gray-600">
@@ -484,7 +553,7 @@ function KontaktForm() {
           </Field>
 
           <Field label="Wunsch-Ankunftszeit" required error={errors.fs_ankunft} htmlFor="fs_ankunft"
-            hint="Wählt eure Ankunftszeit zwischen 9:00 und 11:30 Uhr. Ihr könnt bis 14:00 Uhr bleiben.">
+            hint="Freie Ankunft zwischen 9:00 und 11:30 Uhr – ihr könnt bis 13:00 Uhr bleiben.">
             <select id="fs_ankunft" value={form.fs_ankunft}
               onChange={e => set('fs_ankunft', e.target.value)}
               className={inputClass(errors.fs_ankunft)}>
@@ -552,7 +621,7 @@ function KontaktForm() {
         </>
       )}
 
-      {/* ── ABSCHLUSS ── */}
+      {/* ABSCHLUSS */}
       {form.anlass && (
         <>
           <SectionLabel>Abschluss</SectionLabel>
