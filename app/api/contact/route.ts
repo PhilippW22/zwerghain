@@ -17,6 +17,7 @@ const ALLOWED_GB_ESSEN_WARM = ['pizza', 'nudeln', 'kartoffelecken']
 const ALLOWED_FS_ANKUNFT = ['9:00', '9:30', '10:00', '10:30', '11:00', '11:30']
 const ALLOWED_FS_PERSONEN = Array.from({ length: 8 }, (_, i) => String(i + 1))
 const ALLOWED_FS_KINDER = Array.from({ length: 9 }, (_, i) => String(i))
+const BLOCKED_SUNDAYS = ['2026-08-30']
 
 function err(msg: string, status = 400) {
   return NextResponse.json({ error: msg }, { status })
@@ -203,6 +204,7 @@ Sonstiges: ${nachricht || '–'}
     if (!isNotInPast(sonntag)) return err('Datum liegt in der Vergangenheit.')
     const day = new Date(sonntag + 'T12:00:00').getDay()
     if (day !== 0) return err('Bitte einen Sonntag wählen.')
+    if (BLOCKED_SUNDAYS.includes(sonntag)) return err('Dieser Sonntag ist nicht verfügbar.')
     if (!ALLOWED_FS_ANKUNFT.includes(ankunft)) return err('Ungültige Ankunftszeit.')
     if (!ALLOWED_FS_PERSONEN.includes(erwachsene)) return err('Ungültige Erwachsenenanzahl.')
     if (!ALLOWED_FS_KINDER.includes(kinder)) return err('Ungültige Kinderanzahl.')

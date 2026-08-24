@@ -11,6 +11,8 @@ function localDateMin(): string {
   return `${yyyy}-${mm}-${dd}`
 }
 
+const BLOCKED_SUNDAYS = ['2026-08-30']
+
 const anlaesse = [
   { value: '', label: 'Bitte wählen' },
   { value: 'geburtstag', label: 'Kindergeburtstag' },
@@ -220,6 +222,9 @@ function KontaktForm() {
       } else {
         const day = new Date(form.fs_sonntag + 'T12:00:00').getDay()
         if (day !== 0) e.fs_sonntag = 'Bitte einen Sonntag auswählen.'
+      }
+      if (BLOCKED_SUNDAYS.includes(form.fs_sonntag)) {
+        e.fs_sonntag = 'Diesen Sonntag findet aufgrund einer privaten Veranstaltung kein Sonntagsfrühstück statt. Bitte wähle einen anderen Termin.'
       }
       if (!form.fs_ankunft) e.fs_ankunft = 'Bitte Ankunftszeit wählen.'
       if (!form.fs_erwachsene) e.fs_erwachsene = 'Bitte Anzahl wählen.'
