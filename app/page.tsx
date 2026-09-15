@@ -12,7 +12,7 @@ const tickerItems = [
   //    Öffnungszeiten: Di 14–17:30 Uhr · Mi–Fr 9–17:30 Uhr · Sa & So 9–17 Uhr · Mo Ruhetag · Sonntagsfrühstück 9-13 Uhr nur mit Reservierung
   //   · Hinweis: Am Samstag (dd.mm.) schließen wir ab 12:30 Uhr wegen einer geschlossenen Gesellschaft.
   // Öffnungszeiten vom 31.08. – 06.09.2026: Mo Ruhetag · Di 14–18 Uhr · Mi-Fr 9-14 Uhr · Sa geschlossen · So 9-14 Uhr Sonntagsfrühstück bitte vorab reservieren
-  // Öffnungszeiten vom 03.08.–09.08.2026: Mo Ruhetag · Di 14–18 Uhr · Mi 9-14 Uhr · Do geschlossen · Fr 9–14 Uhr · Sa geschlossen · So 9-14 Uhr
+  //  Öffnungszeiten vom 03.08.–09.08.2026: Mo Ruhetag · Di 14–18 Uhr · Mi 9-14 Uhr · Do geschlossen · Fr 9–14 Uhr · Sa geschlossen · So 9-14 Uhr
 ]
 
 export default function HomePage() {
