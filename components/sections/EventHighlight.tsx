@@ -127,7 +127,7 @@ export default function EventHighlight() {
             </div>
             <div className="relative w-full h-64 md:h-auto min-h-64 order-1 md:order-2">
               <Image
-                src="/images/hero_breakfast.webp"
+                src="/images/breakfastimage.jpg"
                 alt="Sonntagsfrühstück im Zwerghain Eltern-Kind-Café in Berlin-Lichterfelde"
                 fill
                 className="object-cover"

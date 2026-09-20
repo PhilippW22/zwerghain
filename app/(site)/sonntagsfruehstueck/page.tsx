@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function BreakfastPage() {
   return (
@@ -23,32 +24,53 @@ export default function BreakfastPage() {
             für die ganze Familie.
           </p>
 
-          {/* Kombinierte Card */}
           <div className="bg-white rounded-3xl shadow-sm p-6 sm:p-8 mb-8 flex flex-col gap-6">
 
-            {/* Frühstückszeiten */}
-            <div>
-              <h2 className="text-lg font-bold text-brand-green mb-4">
-                Unsere Frühstückszeiten
-              </h2>
-              <div className="flex items-center gap-3 bg-brand-green/5 rounded-2xl px-5 py-4 mb-3">
-                <span className="w-2 h-2 rounded-full bg-brand-green shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="text-xs text-gray-500">Freie Ankunftszeit</p>
-                  <p className="font-semibold text-brand-green">zwischen 9:00 und 11:30 Uhr</p>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Ihr wählt eure Wunschzeit für die Ankunft und könnt anschließend ganz entspannt bleiben –
-                bis wir um 14:00 Uhr schließen.
-              </p>
-            </div>
-            {/* Absagehinweis */}
-            <p className="text-sm text-gray-600 leading-relaxed bg-brand-green/5 rounded-2xl px-5 py-4">
-              Falls ihr euren Termin nicht wahrnehmen könnt, sagt bitte mindestens eine Stunde vorher ab.
-              So können wir den Platz noch an eine andere Familie vergeben. Vielen Dank!
-            </p>
-            {/* Trennlinie */}
+            {/* Frühstückszeiten + Bild */}
+<div className="grid grid-cols-1 sm:grid-cols-[1fr_180px] gap-6 items-start">
+  <div>
+    <h2 className="text-lg font-bold text-brand-green mb-4">
+      Unsere Frühstückszeiten
+    </h2>
+
+    <p className="text-sm text-gray-600 leading-relaxed mb-4">
+      Wir haben jeden Sonntag zwei Frühstücksslots. Bitte beachtet, dass euer Tisch
+      jeweils bis zum Ende des gebuchten Slots für euch reserviert ist.
+    </p>
+
+    <div className="flex flex-col gap-3">
+      {[
+        { slot: '9:00–10:30 Uhr', label: '1. Frühstücksslot' },
+        { slot: '11:00–12:30 Uhr', label: '2. Frühstücksslot' },
+      ].map((item) => (
+        <div
+          key={item.slot}
+          className="flex items-center gap-3 bg-brand-green/5 rounded-2xl px-5 py-4"
+        >
+          <span
+            className="w-2 h-2 rounded-full bg-brand-green shrink-0"
+            aria-hidden="true"
+          />
+          <div>
+            <p className="text-xs text-gray-500">{item.label}</p>
+            <p className="font-semibold text-brand-green">{item.slot}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden">
+    <Image
+      src="/images/breakfastimage.jpg"
+      alt="Sonntagsfrühstück im Zwerghain"
+      fill
+      className="object-cover"
+      sizes="(max-width: 639px) 100vw, 180px"
+    />
+  </div>
+</div>
+
             <div className="border-t border-gray-100" />
 
             {/* Was euch erwartet */}
@@ -72,7 +94,6 @@ export default function BreakfastPage() {
               </ul>
             </div>
 
-            {/* Trennlinie */}
             <div className="border-t border-gray-100" />
 
             {/* Preise */}
@@ -99,7 +120,14 @@ export default function BreakfastPage() {
               </div>
             </div>
 
-            {/* Trennlinie */}
+            <div className="border-t border-gray-100" />
+
+            {/* Absagehinweis */}
+            <p className="text-sm text-gray-600 leading-relaxed bg-brand-green/5 rounded-2xl px-5 py-4">
+              Falls ihr euren Termin nicht wahrnehmen könnt, sagt bitte mindestens eine Stunde vorher ab.
+              So können wir den Platz noch an eine andere Familie vergeben. Vielen Dank!
+            </p>
+
             <div className="border-t border-gray-100" />
 
             {/* CTA */}
