@@ -104,9 +104,11 @@ export default function EventHighlight() {
               </p>
               <ul className="mt-4 flex flex-col gap-2 text-white/90 text-sm sm:text-base" role="list">
                 {[
-                  'Freie Ankunft zwischen 9:00 und 11:30 Uhr',
+                  'Zwei Slots: 9:00–10:30 Uhr & 11:00–12:30 Uhr',
                   'Liebevoll angerichtete Frühstücks-Etagere',
-                  '38,00 € für 2 Erw. + 1 Kind · jedes weitere Kind +8,00 €',
+                  '39,00 € für 2 Erw. + 1 Kind',
+                  '19,00 € für 1 Erw. + 1 Kind',
+                  'Jedes weitere Kind ab 3 Jahren + 9,00 €',
                   'Nur mit Reservierung',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">

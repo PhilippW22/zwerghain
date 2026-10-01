@@ -103,14 +103,21 @@ export default function BreakfastPage() {
                 <div className="flex items-center justify-between bg-brand-green/5 rounded-2xl px-5 py-4">
                   <div>
                     <p className="text-xs text-gray-500">Familien-Etagere</p>
-                    <p className="font-bold text-brand-green text-lg">38,00 €</p>
+                    <p className="font-bold text-brand-green text-lg">39,00 €</p>
                   </div>
                   <p className="text-sm text-gray-600 text-right">2 Erwachsene + 1 Kind</p>
                 </div>
                 <div className="flex items-center justify-between bg-brand-green/5 rounded-2xl px-5 py-4">
                   <div>
+                    <p className="text-xs text-gray-500">Frühstücksteller</p>
+                    <p className="font-bold text-brand-green text-lg">19,00 €</p>
+                  </div>
+                  <p className="text-sm text-gray-600 text-right">1 Erwachsene + 1 Kind</p>
+                </div>
+                <div className="flex items-center justify-between bg-brand-green/5 rounded-2xl px-5 py-4">
+                  <div>
                     <p className="text-xs text-gray-500">Jedes weitere Kind ab 3 Jahren</p>
-                    <p className="font-bold text-brand-green text-lg">+ 8,00 €</p>
+                    <p className="font-bold text-brand-green text-lg">+ 9,00 €</p>
                   </div>
                   <p className="text-sm text-gray-600 text-right">Aufpreis</p>
                 </div>
