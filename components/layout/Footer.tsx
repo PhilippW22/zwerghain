@@ -50,12 +50,14 @@ export default function Footer() {
     <div className="grid grid-cols-[auto_1fr] gap-x-4">
       <span>Di</span>
       <span>14 – 18 Uhr</span>
-      <span>Mi – Fr</span>
+      <span>Mi</span>
       <span>9 – 14 Uhr</span>
+      <span>Do – Fr</span>
+      <span>9 – 17:30 Uhr</span>
       <span>Sa</span>
-      <span>9 – 18 Uhr</span>
+      <span>geschlossen</span>
       <span>So</span>
-      <span>9 – 14 Uhr</span>
+      <span>9 – 13 Uhr</span>
       <span className="col-span-2 text-white/50 text-xs mt-0.5">
         <a href="/sonntagsfruehstueck" className="underline hover:text-white transition-colors">
         Sonntagsfrühstück nur mit Reservierung
