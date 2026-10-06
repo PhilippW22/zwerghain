@@ -4,86 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import WaveDivider from '@/components/ui/WaveDivider'
+import type { EventsData } from '@/lib/sanity'
 
 const gradientBg = {
   background:
     'radial-gradient(ellipse at 20% 50%, rgb(212, 212, 190) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgb(212, 212, 190) 0%, transparent 50%)',
 }
-
-const geburtstagsPackete = [
-  {
-    image: '/images/eichhoernchenfeier.png',
-    name: 'Eichhörnchen-Feier',
-    paketKey: 'eichhoernchen',
-    preis: '329 €',
-    dauer: '2,5 Stunden',
-    beschreibung: 'Die entspannte Basis für einen schönen Kindergeburtstag im kleinen Kreis.',
-    items: [
-      '2,5 Stunden exklusive Nutzung des Cafés',
-      'Dekoration in einer Wunschfarbe: Rosa, Blau, Grün oder Gelb',
-      'Passende Luftballons',
-      'Wasser & Apfelschorle für die Kinder',
-      'Frische & süße Etagere mit Gemüsesticks & Obst',
-      'Himbeer-Vanille-Geburtstagstorte',
-    ],
-    hinweis: 'Ihr möchtet ein bestimmtes Motto? Auch bei der Eichhörnchen-Feier könnt ihr statt der farblichen Gestaltung eine Mottodekoration für zusätzlich 50 € buchen.',
-  },
-  {
-    image: '/images/fuchsfeier.png',
-    name: 'Fuchs-Feier',
-    paketKey: 'fuchs',
-    preis: '429 €',
-    dauer: '2,5 Stunden',
-    beschreibung: 'Für alle, die sich zum Geburtstag ein bisschen mehr wünschen.',
-    items: [
-      '2,5 Stunden exklusive Nutzung des Cafés',
-      'Liebevoll gestaltete Mottodekoration nach Wahl',
-      'Passende Tischdekoration & Geschirr',
-      'Luftballons passend zum Motto',
-      'Aufblasbare Geburtstagszahl',
-      'Wasser & Apfelschorle für die Kinder',
-      'Frische & süße Etagere mit Gemüsesticks & Obst',
-      'Himbeer-Vanille-Geburstagstorte passend zum Motto dekoriert',
-      'Warmes Essen: Pizza Margherita oder Nudeln mit Tomatensoße in Bio-Qualität',
-    ],
-    hinweis: null,
-  },
-]
-
-const brunchPakete = [
-  {
-    name: 'Private Brunch Small',
-    paketKey: 'small',
-    preis: '329 €',
-    kapazitaet: 'bis zu 6 Erwachsene + 3 Kinder',
-    items: [
-      '2,5 Stunden Zwerghain exklusiv für euch',
-      '3 große Zwerghain-Frühstücksetageren',
-      'Brötchen & Croissants',
-      'Käse- & Wurstauswahl',
-      'Butter, Frischkäse & süße Aufstriche',
-      'Frisches Obst & Gemüse',
-      'Wasser auf den Tischen',
-      'Komplette Nutzung unserer Spielbereiche',
-    ],
-  },
-  {
-    name: 'Private Brunch Large',
-    paketKey: 'large',
-    preis: '469 €',
-    kapazitaet: 'bis zu 10 Erwachsene + 5 Kinder',
-    items: [
-      '2,5 Stunden Zwerghain exklusiv für euch',
-      '5 große Zwerghain-Frühstücksetageren',
-      'Brötchen & Croissants',
-      'Käse- & Wurstauswahl',
-      'Butter, Frischkäse & süße Aufstriche',
-      'Frisches Obst & Gemüse',
-      'Wasser auf den Tischen',
-      'Komplette Nutzung unserer Spielbereiche',
-    ],
-  },
-]
 
 type Tab = 'geburtstag' | 'brunch'
 
@@ -97,9 +23,50 @@ const priceBgClass = 'bg-brand-green/5'
 const ctaClass = 'bg-brand-green text-white hover:bg-brand-green/90 focus-visible:ring-brand-green focus-visible:ring-offset-white'
 const hintBgClass = 'bg-brand-green/5 text-gray-600'
 
-export default function EventsTabs() {
+export default function EventsTabs({ eventsData }: { eventsData: EventsData }) {
+  
   const [activeTab, setActiveTab] = useState<Tab>('geburtstag')
 
+  const geburtstagsPackete = [
+    {
+      image: '/images/eichhoernchenfeier.png',
+      name: 'Eichhörnchen-Feier',
+      paketKey: 'eichhoernchen',
+      preis: '329 €',
+      dauer: '2,5 Stunden',
+      beschreibung: 'Die entspannte Basis für einen schönen Kindergeburtstag im kleinen Kreis.',
+      items: eventsData.eichhoernchenBullets,
+      hinweis: eventsData.eichhoernchenHinweis,
+    },
+    {
+      image: '/images/fuchsfeier.png',
+      name: 'Fuchs-Feier',
+      paketKey: 'fuchs',
+      preis: '429 €',
+      dauer: '2,5 Stunden',
+      beschreibung: 'Für alle, die sich zum Geburtstag ein bisschen mehr wünschen.',
+      items: eventsData.fuchsBullets,
+      hinweis: null,
+    },
+  ]
+
+  const brunchPakete = [
+    {
+      name: 'Private Brunch Small',
+      paketKey: 'small',
+      preis: '329 €',
+      kapazitaet: 'bis zu 6 Erwachsene + 3 Kinder',
+      items: eventsData.brunchSmallBullets,
+    },
+    {
+      name: 'Private Brunch Large',
+      paketKey: 'large',
+      preis: '469 €',
+      kapazitaet: 'bis zu 10 Erwachsene + 5 Kinder',
+      items: eventsData.brunchLargeBullets,
+    },
+  ]
+  
   return (
     <>
       {/* Tabs */}
@@ -261,12 +228,9 @@ export default function EventsTabs() {
                 Das ganze Zwerghain. Nur für euch. 🤍
               </h2>
               <div className="flex flex-col gap-3 text-white/90 text-sm sm:text-base leading-relaxed">
-                <p>
-                Ein entspannter Samstagvormittag mit euren Lieblingsmenschen: Für 2,5 Stunden gehört das gesamte Zwerghain exklusiv euch. Ihr frühstückt gemeinsam an eurer eigenen großen Tafel, während die Kleinen unsere Spielbereiche entdecken und nach Herzenslust spielen können.
-                </p>
-                <p>
-                Perfekt für Babyshowers, Taufen, Baby-Welcomes, Geburtstage oder einfach einen besonderen Vormittag mit Familie und Freunden.
-                </p>
+                {eventsData.brunchEinleitung.split('\n\n').map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
               </div>
               <div className="flex flex-wrap gap-3 mt-2">
                 {['🥐 Samstagvormittags', '⏰ 9:30–12:00 Uhr', '🔑 2,5 Std. exklusiv', '🛝 Spielbereiche inklusive'].map(tag => (

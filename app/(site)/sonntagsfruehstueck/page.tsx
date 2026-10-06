@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { getSonntagsfruehstueck } from '@/lib/sanity'
 
-export default function BreakfastPage() {
+export default async function BreakfastPage() {
+  const fs = await getSonntagsfruehstueck()
   return (
     <>
       <section
@@ -19,9 +21,7 @@ export default function BreakfastPage() {
             Sonntagsfrühstück im Zwerghain – gemeinsam genießen.
           </h1>
           <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-center mb-12">
-            Startet entspannt in den Sonntag und lasst euch bei uns verwöhnen. Während die Kinder
-            spielen und entdecken, genießt ihr eine liebevoll zusammengestellte Frühstücks-Etagere
-            für die ganze Familie.
+            {fs.einleitung}
           </p>
 
           <div className="bg-white rounded-3xl shadow-sm p-6 sm:p-8 mb-8 flex flex-col gap-6">
@@ -79,13 +79,7 @@ export default function BreakfastPage() {
                 Was euch erwartet
               </h2>
               <ul className="flex flex-col gap-2" role="list">
-                {[
-                  'Liebevoll zusammengestellte Frühstücks-Etagere',
-                  'Frische Brötchen',
-                  'Herzhafte und süße Aufschnitte',
-                  'Familienfreundliche Atmosphäre',
-                  'Raum zum Spielen für die Kinder',
-                ].map((item) => (
+                {fs.leistungsBullets.map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-700">
                     <span className="w-2 h-2 rounded-full bg-brand-green shrink-0" aria-hidden="true" />
                     {item}
@@ -131,8 +125,7 @@ export default function BreakfastPage() {
 
             {/* Absagehinweis */}
             <p className="text-sm text-gray-600 leading-relaxed bg-brand-green/5 rounded-2xl px-5 py-4">
-              Falls ihr euren Termin nicht wahrnehmen könnt, sagt bitte mindestens eine Stunde vorher ab.
-              So können wir den Platz noch an eine andere Familie vergeben. Vielen Dank!
+              {fs.absageHinweis}
             </p>
 
             <div className="border-t border-gray-100" />

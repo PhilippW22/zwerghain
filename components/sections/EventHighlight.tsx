@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import WaveDivider from '@/components/ui/WaveDivider'
+import { getEventHighlight } from '@/lib/sanity'
 
-export default function EventHighlight() {
+export default async function EventHighlight() {
+  const eh = await getEventHighlight()
   return (
     <>
       <section
@@ -59,15 +61,10 @@ export default function EventHighlight() {
                 id="event-highlight-heading"
                 className="text-2xl sm:text-3xl font-bold text-white leading-snug"
               >
-                Kindergeburtstag, Baby Shower oder Familienfest – bei uns wird jeder Anlass besonders.
+                {eh.feiernHeadline}
               </h2>
               <ul className="mt-5 flex flex-col gap-2 text-white/90 text-sm sm:text-base" role="list">
-                {[
-                  'Feiern während des Cafébetriebs möglich',
-                  'Exklusive Raummiete für private Feste',
-                  'Individuelle Dekoration & liebevolle Details',
-                  'Animation, Kinderschminken & mehr zubuchbar',
-                ].map((item) => (
+                {eh.feiernBullets.map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-white/60 shrink-0" aria-hidden="true" />
                     <span>{item}</span>
@@ -95,22 +92,13 @@ export default function EventHighlight() {
                 id="breakfast-highlight-heading"
                 className="text-2xl sm:text-3xl font-bold text-white leading-snug"
               >
-                Sonntagsfrühstück im Zwerghain – gemeinsam entspannt in den Tag starten.
+                {eh.fruehstueckHeadline}
               </h2>
               <p className="mt-4 text-white/90 text-sm sm:text-base leading-relaxed">
-                Startet entspannt in den Sonntag: Während die Kinder spielen und entdecken, genießt
-                ihr ein liebevoll angerichtetes Frühstück mit frischen Brötchen, herzhaften und
-                süßen Aufschnitten sowie einer reich gefüllten Etagere für Groß und Klein.
+                {eh.fruehstueckText}
               </p>
               <ul className="mt-4 flex flex-col gap-2 text-white/90 text-sm sm:text-base" role="list">
-                {[
-                  'Zwei Slots: 9:00–10:30 Uhr & 11:00–12:30 Uhr',
-                  'Liebevoll angerichtete Frühstücks-Etagere',
-                  '39,00 € für 2 Erw. + 1 Kind',
-                  '19,00 € für 1 Erw. + 1 Kind',
-                  'Jedes weitere Kind ab 3 Jahren + 9,00 €',
-                  'Nur mit Reservierung',
-                ].map((item) => (
+                {eh.fruehstueckBullets.map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-white/60 shrink-0" aria-hidden="true" />
                     <span>{item}</span>

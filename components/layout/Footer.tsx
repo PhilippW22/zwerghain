@@ -1,6 +1,9 @@
 import Link from 'next/link'
+import { getOpeningHours } from '@/lib/sanity'
+import React from 'react'
 
-export default function Footer() {
+export default async function Footer() {
+  const { rows, closedDay } = await getOpeningHours()
   return (
     <footer className="bg-brand-green text-white" aria-label="Fußbereich">
 
@@ -48,28 +51,23 @@ export default function Footer() {
   <div className="flex flex-col gap-1 text-sm text-white/90 mb-5">
     <p className="font-medium text-white mb-1">Öffnungszeiten</p>
     <div className="grid grid-cols-[auto_1fr] gap-x-4">
-      <span>Di</span>
-      <span>14 – 18 Uhr</span>
-      <span>Mi</span>
-      <span>9 – 14 Uhr</span>
-      <span>Do – Fr</span>
-      <span>9 – 17:30 Uhr</span>
-      <span>Sa</span>
-      <span>geschlossen</span>
-      <span>So</span>
-      <span>9 – 13 Uhr</span>
+      {rows.map(row => (
+        <React.Fragment key={row.day}>
+          <span>{row.day}</span>
+          <span>{row.hours}</span>
+        </React.Fragment>
+      ))}
       <span className="col-span-2 text-white/50 text-xs mt-0.5">
         <a href="/sonntagsfruehstueck" className="underline hover:text-white transition-colors">
-        Sonntagsfrühstück nur mit Reservierung
+          Sonntagsfrühstück nur mit Reservierung
         </a>
       </span>
     </div>
-    <p className="text-white/50 text-xs mt-1">Montag geschlossen</p>
+    <p className="text-white/50 text-xs mt-1">{closedDay} geschlossen</p>
     <div className="mt-2 flex flex-col gap-0.5">
       <p className="text-white/50 text-xs leading-relaxed mt-1">
-        Am Wochenende finden bei uns manchmal private Feiern statt –
-        dann schließen wir bereits am Mittag. Aktuelle Hinweise
-        findet ihr hier auf der Website und auf Instagram.
+        Am Wochenende finden bei uns manchmal private Feiern statt.
+        Aktuelle Hinweise findet ihr hier auf der Website und auf Instagram.
       </p>
     </div>
   </div>

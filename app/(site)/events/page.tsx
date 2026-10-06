@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import EventsTabs from './EventsTab'
+import { getEventsData } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: 'Events & Feiern',
@@ -7,7 +8,8 @@ export const metadata: Metadata = {
     'Private Brunch & Kindergeburtstage im Zwerghain Berlin-Lichterfelde. Feiert exklusiv im Café – mit Frühstück, Spielbereichen und liebevoll gestalteten Geburtstagspaketen.',
 }
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const eventsData = await getEventsData()
   return (
     <>
       {/* Intro – Server Component */}
@@ -26,7 +28,7 @@ export default function EventsPage() {
         </div>
       </section>
 
-      <EventsTabs />
+      <EventsTabs eventsData={eventsData} />
     </>
   )
 }

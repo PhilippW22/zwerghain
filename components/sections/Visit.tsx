@@ -1,5 +1,9 @@
+import { getOpeningHours } from '@/lib/sanity'
+import React from 'react'
 
-export default function Visit() {
+export default async function Visit() {
+  const { rows, closedDay } = await getOpeningHours()
+
   return (
     <section
       aria-labelledby="visit-heading"
@@ -43,23 +47,19 @@ export default function Visit() {
           <div className="flex flex-col gap-2">
             <p className="text-sm font-semibold text-gray-700">Öffnungszeiten</p>
             <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm text-gray-600">
-            <span>Di</span>
-            <span>14 – 18 Uhr</span>
-            <span>Mi</span>
-            <span>9 – 14 Uhr</span>
-            <span>Do – Fr</span>
-            <span>9 – 17:30 Uhr</span>
-            <span>Sa</span>
-            <span>geschlossen</span>
-            <span>So</span>
-            <span>9 – 13 Uhr</span>
-              <span className="col-span-2 text-xs text-gray-400 -mt-0.5">
-                <a href="/sonntagsfruehstueck" className="underline hover:text-brand-green transition-colors">
+            {rows.map(row => (
+              <React.Fragment key={row.day}>
+                <span>{row.day}</span>
+                <span>{row.hours}</span>
+              </React.Fragment>
+            ))}
+            <span className="col-span-2 text-xs text-gray-400 -mt-0.5">
+              <a href="/sonntagsfruehstueck" className="underline hover:text-brand-green transition-colors">
                 Sonntagsfrühstück nur mit Reservierung
-                </a>
-              </span>
-              <span className="text-gray-400">Montag</span>
-              <span className="text-gray-400">Ruhetag</span>
+              </a>
+            </span>
+            <span className="text-gray-400">{closedDay}</span>
+            <span className="text-gray-400">Ruhetag</span>
             </div>
           </div>
 
