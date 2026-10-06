@@ -21,7 +21,6 @@ return [
 }
 
 // opening hours
-
 export type OpeningHoursRow = { day: string; hours: string }
 export type OpeningHoursData = {
   rows: OpeningHoursRow[]
@@ -46,7 +45,6 @@ export async function getOpeningHours(): Promise<OpeningHoursData> {
   }
 
 // faq items
-
 export type FaqItem = { question: string; answer: string }
 
 export async function getFaqItems(): Promise<FaqItem[]> {
@@ -70,7 +68,6 @@ export async function getFaqItems(): Promise<FaqItem[]> {
 }
 
 // eventhighlights
-
 export type EventHighlightData = {
     feiernHeadline: string
     feiernBullets: string[]
