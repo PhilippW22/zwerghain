@@ -1,23 +1,25 @@
 import { createClient } from 'next-sanity'
 
 export const client = createClient({
-    projectId: 'dsfji5xs',
-    dataset: 'production',
-    apiVersion: '2024-01-01',
-    useCdn: true,
-  })
+  projectId: 'dsfji5xs',
+  dataset: 'production',
+  apiVersion: '2024-01-01',
+  useCdn: true,
+})
+
+const fetchOptions = { next: { revalidate: 60 } }
 
 // Ticker
 export async function getTickerItems(): Promise<string[]> {
-try {
-    const data = await client.fetch(`*[_type == "ticker"][0].items`)
+  try {
+    const data = await client.fetch(`*[_type == "ticker"][0].items`, {}, fetchOptions)
     if (Array.isArray(data) && data.length > 0) return data
-} catch (e) {
+  } catch (e) {
     console.error('Sanity Ticker fetch fehlgeschlagen:', e)
-}
-return [
+  }
+  return [
     'Öffnungszeiten: Di 14–17:30 Uhr · Mi - Fr 9-17:30 Uhr · Sa geschlossen · So 9–13 Uhr Sonntagsfrühstück nur mit Reservierung · Mo Ruhetag',
-]
+  ]
 }
 
 // opening hours
@@ -27,29 +29,29 @@ export type OpeningHoursData = {
   closedDay: string
 }
 export async function getOpeningHours(): Promise<OpeningHoursData> {
-    try {
-      const data = await client.fetch(`*[_type == "openingHours"][0]`)
-      if (data?.rows) return data
-    } catch (e) {
-      console.error('Sanity OpeningHours fetch fehlgeschlagen:', e)
-    }
-    return {
-      rows: [
-        { day: 'Di', hours: '14 – 17:30 Uhr' },
-        { day: 'Mi - Fr', hours: '9 – 17:30 Uhr' },
-        { day: 'Sa', hours: 'geschlossen' },
-        { day: 'So', hours: '9 – 13 Uhr' },
-      ],
-      closedDay: 'Montag',
-    }
+  try {
+    const data = await client.fetch(`*[_type == "openingHours"][0]`, {}, fetchOptions)
+    if (data?.rows) return data
+  } catch (e) {
+    console.error('Sanity OpeningHours fetch fehlgeschlagen:', e)
   }
+  return {
+    rows: [
+      { day: 'Di', hours: '14 – 17:30 Uhr' },
+      { day: 'Mi - Fr', hours: '9 – 17:30 Uhr' },
+      { day: 'Sa', hours: 'geschlossen' },
+      { day: 'So', hours: '9 – 13 Uhr' },
+    ],
+    closedDay: 'Montag',
+  }
+}
 
 // faq items
 export type FaqItem = { question: string; answer: string }
 
 export async function getFaqItems(): Promise<FaqItem[]> {
   try {
-    const data = await client.fetch(`*[_type == "faq"][0].items`)
+    const data = await client.fetch(`*[_type == "faq"][0].items`, {}, fetchOptions)
     if (Array.isArray(data) && data.length > 0) return data
   } catch (e) {
     console.error('Sanity FAQ fetch fehlgeschlagen:', e)
@@ -69,147 +71,147 @@ export async function getFaqItems(): Promise<FaqItem[]> {
 
 // eventhighlights
 export type EventHighlightData = {
-    feiernHeadline: string
-    feiernBullets: string[]
-    fruehstueckHeadline: string
-    fruehstueckText: string
-    fruehstueckBullets: string[]
-  }
-  
-export async function getEventHighlight(): Promise<EventHighlightData> {
-try {
-    const data = await client.fetch(`*[_type == "eventHighlight"][0]`)
-    if (data) return data
-} catch (e) {
-    console.error('Sanity EventHighlight fetch fehlgeschlagen:', e)
+  feiernHeadline: string
+  feiernBullets: string[]
+  fruehstueckHeadline: string
+  fruehstueckText: string
+  fruehstueckBullets: string[]
 }
-return {
+
+export async function getEventHighlight(): Promise<EventHighlightData> {
+  try {
+    const data = await client.fetch(`*[_type == "eventHighlight"][0]`, {}, fetchOptions)
+    if (data) return data
+  } catch (e) {
+    console.error('Sanity EventHighlight fetch fehlgeschlagen:', e)
+  }
+  return {
     feiernHeadline: 'Kindergeburtstag, Baby Shower oder Familienfest – bei uns wird jeder Anlass besonders.',
     feiernBullets: [
-    'Feiern während des Cafébetriebs möglich',
-    'Exklusive Raummiete für private Feste',
-    'Individuelle Dekoration & liebevolle Details',
-    'Animation, Kinderschminken & mehr zubuchbar',
+      'Feiern während des Cafébetriebs möglich',
+      'Exklusive Raummiete für private Feste',
+      'Individuelle Dekoration & liebevolle Details',
+      'Animation, Kinderschminken & mehr zubuchbar',
     ],
     fruehstueckHeadline: 'Sonntagsfrühstück im Zwerghain – gemeinsam entspannt in den Tag starten.',
     fruehstueckText: 'Startet entspannt in den Sonntag: Während die Kinder spielen und entdecken, genießt ihr ein liebevoll angerichtetes Frühstück mit frischen Brötchen, herzhaften und süßen Aufschnitten sowie einer reich gefüllten Etagere für Groß und Klein.',
     fruehstueckBullets: [
-    'Zwei Slots: 9:00–10:30 Uhr & 11:00–12:30 Uhr',
-    'Liebevoll angerichtete Frühstücks-Etagere',
-    '39,00 € für 2 Erw. + 1 Kind',
-    '19,00 € für 1 Erw. + 1 Kind',
-    'Jedes weitere Kind ab 3 Jahren + 9,00 €',
-    'Nur mit Reservierung',
+      'Zwei Slots: 9:00–10:30 Uhr & 11:00–12:30 Uhr',
+      'Liebevoll angerichtete Frühstücks-Etagere',
+      '39,00 € für 2 Erw. + 1 Kind',
+      '19,00 € für 1 Erw. + 1 Kind',
+      'Jedes weitere Kind ab 3 Jahren + 9,00 €',
+      'Nur mit Reservierung',
     ],
-}
+  }
 }
 
 // about us
 export type AboutUsData = {
-headline: string
-body: string
-closing: string
+  headline: string
+  body: string
+  closing: string
 }
 
 export async function getAboutUs(): Promise<AboutUsData> {
-try {
-    const data = await client.fetch(`*[_type == "aboutUs"][0]`)
+  try {
+    const data = await client.fetch(`*[_type == "aboutUs"][0]`, {}, fetchOptions)
     if (data) return data
-} catch (e) {
+  } catch (e) {
     console.error('Sanity AboutUs fetch fehlgeschlagen:', e)
-}
-return {
+  }
+  return {
     headline: 'Pädagogik & Spiel im Zwerghain',
     body: 'Im Zwerghain steht das freie Spiel im Mittelpunkt. Kinder entdecken hier selbstbestimmt und im eigenen Tempo ihre Welt – durch Bewegung, Kreativität und eigene Erfahrungen.\n\nUnsere vielseitigen Spielbereiche fördern Fantasie, Motorik und soziale Kompetenzen – beim Klettern, Bauen, Rollenspiel oder gemeinsamen Entdecken. Kinder erleben Selbstwirksamkeit und lernen spielerisch Rücksichtnahme und Teamgeist.\nWährenddessen genießen Eltern eine entspannte Atmosphäre – aufmerksam begleitend oder mit einer bewussten kleinen Auszeit.',
     closing: 'So verbindet das Zwerghain pädagogische Qualität, Sicherheit und Wohlbefinden unter einem Dach.',
-}
+  }
 }
 
 // Eventspage
 export type EventsData = {
-    eichhoernchenBullets: string[]
-    eichhoernchenHinweis: string
-    fuchsBullets: string[]
-    brunchEinleitung: string
-    brunchSmallBullets: string[]
-    brunchLargeBullets: string[]
-  }
-  
-export async function getEventsData(): Promise<EventsData> {
-try {
-    const data = await client.fetch(`*[_type == "events"][0]`)
-    if (data) return data
-} catch (e) {
-    console.error('Sanity Events fetch fehlgeschlagen:', e)
+  eichhoernchenBullets: string[]
+  eichhoernchenHinweis: string
+  fuchsBullets: string[]
+  brunchEinleitung: string
+  brunchSmallBullets: string[]
+  brunchLargeBullets: string[]
 }
-return {
+
+export async function getEventsData(): Promise<EventsData> {
+  try {
+    const data = await client.fetch(`*[_type == "events"][0]`, {}, fetchOptions)
+    if (data) return data
+  } catch (e) {
+    console.error('Sanity Events fetch fehlgeschlagen:', e)
+  }
+  return {
     eichhoernchenBullets: [
-    '2,5 Stunden exklusive Nutzung des Cafés',
-    'Dekoration in einer Wunschfarbe: Rosa, Blau, Grün oder Gelb',
-    'Passende Luftballons',
-    'Wasser & Apfelschorle für die Kinder',
-    'Frische & süße Etagere mit Gemüsesticks & Obst',
-    'Himbeer-Vanille-Geburtstagstorte',
+      '2,5 Stunden exklusive Nutzung des Cafés',
+      'Dekoration in einer Wunschfarbe: Rosa, Blau, Grün oder Gelb',
+      'Passende Luftballons',
+      'Wasser & Apfelschorle für die Kinder',
+      'Frische & süße Etagere mit Gemüsesticks & Obst',
+      'Himbeer-Vanille-Geburtstagstorte',
     ],
     eichhoernchenHinweis: 'Ihr möchtet ein bestimmtes Motto? Auch bei der Eichhörnchen-Feier könnt ihr statt der farblichen Gestaltung eine Mottodekoration für zusätzlich 50 € buchen.',
     fuchsBullets: [
-    '2,5 Stunden exklusive Nutzung des Cafés',
-    'Liebevoll gestaltete Mottodekoration nach Wahl',
-    'Passende Tischdekoration & Geschirr',
-    'Luftballons passend zum Motto',
-    'Aufblasbare Geburtstagszahl',
-    'Wasser & Apfelschorle für die Kinder',
-    'Frische & süße Etagere mit Gemüsesticks & Obst',
-    'Himbeer-Vanille-Geburstagstorte passend zum Motto dekoriert',
-    'Warmes Essen: Pizza Margherita oder Nudeln mit Tomatensoße in Bio-Qualität',
+      '2,5 Stunden exklusive Nutzung des Cafés',
+      'Liebevoll gestaltete Mottodekoration nach Wahl',
+      'Passende Tischdekoration & Geschirr',
+      'Luftballons passend zum Motto',
+      'Aufblasbare Geburtstagszahl',
+      'Wasser & Apfelschorle für die Kinder',
+      'Frische & süße Etagere mit Gemüsesticks & Obst',
+      'Himbeer-Vanille-Geburstagstorte passend zum Motto dekoriert',
+      'Warmes Essen: Pizza Margherita oder Nudeln mit Tomatensoße in Bio-Qualität',
     ],
     brunchEinleitung: 'Ein entspannter Samstagvormittag mit euren Lieblingsmenschen: Für 2,5 Stunden gehört das gesamte Zwerghain exklusiv euch. Ihr frühstückt gemeinsam an eurer eigenen großen Tafel, während die Kleinen unsere Spielbereiche entdecken und nach Herzenslust spielen können.\n\nPerfekt für Babyshowers, Taufen, Baby-Welcomes, Geburtstage oder einfach einen besonderen Vormittag mit Familie und Freunden.',
     brunchSmallBullets: [
-    '2,5 Stunden Zwerghain exklusiv für euch',
-    '3 große Zwerghain-Frühstücksetageren',
-    'Brötchen & Croissants',
-    'Käse- & Wurstauswahl',
-    'Butter, Frischkäse & süße Aufstriche',
-    'Frisches Obst & Gemüse',
-    'Wasser auf den Tischen',
-    'Komplette Nutzung unserer Spielbereiche',
+      '2,5 Stunden Zwerghain exklusiv für euch',
+      '3 große Zwerghain-Frühstücksetageren',
+      'Brötchen & Croissants',
+      'Käse- & Wurstauswahl',
+      'Butter, Frischkäse & süße Aufstriche',
+      'Frisches Obst & Gemüse',
+      'Wasser auf den Tischen',
+      'Komplette Nutzung unserer Spielbereiche',
     ],
     brunchLargeBullets: [
-    '2,5 Stunden Zwerghain exklusiv für euch',
-    '5 große Zwerghain-Frühstücksetageren',
-    'Brötchen & Croissants',
-    'Käse- & Wurstauswahl',
-    'Butter, Frischkäse & süße Aufstriche',
-    'Frisches Obst & Gemüse',
-    'Wasser auf den Tischen',
-    'Komplette Nutzung unserer Spielbereiche',
+      '2,5 Stunden Zwerghain exklusiv für euch',
+      '5 große Zwerghain-Frühstücksetageren',
+      'Brötchen & Croissants',
+      'Käse- & Wurstauswahl',
+      'Butter, Frischkäse & süße Aufstriche',
+      'Frisches Obst & Gemüse',
+      'Wasser auf den Tischen',
+      'Komplette Nutzung unserer Spielbereiche',
     ],
-}
+  }
 }
 
 // sonntagsfrühstück
 export type SonntagsfruehstueckData = {
-    einleitung: string
-    leistungsBullets: string[]
-    absageHinweis: string
-  }
-  
-export async function getSonntagsfruehstueck(): Promise<SonntagsfruehstueckData> {
-try {
-    const data = await client.fetch(`*[_type == "sonntagsfruehstueck"][0]`)
-    if (data) return data
-} catch (e) {
-    console.error('Sanity Sonntagsfrühstück fetch fehlgeschlagen:', e)
+  einleitung: string
+  leistungsBullets: string[]
+  absageHinweis: string
 }
-return {
+
+export async function getSonntagsfruehstueck(): Promise<SonntagsfruehstueckData> {
+  try {
+    const data = await client.fetch(`*[_type == "sonntagsfruehstueck"][0]`, {}, fetchOptions)
+    if (data) return data
+  } catch (e) {
+    console.error('Sanity Sonntagsfrühstück fetch fehlgeschlagen:', e)
+  }
+  return {
     einleitung: 'Startet entspannt in den Sonntag und lasst euch bei uns verwöhnen. Während die Kinder spielen und entdecken, genießt ihr eine liebevoll zusammengestellte Frühstücks-Etagere für die ganze Familie.',
     leistungsBullets: [
-    'Liebevoll zusammengestellte Frühstücks-Etagere',
-    'Frische Brötchen',
-    'Herzhafte und süße Aufschnitte',
-    'Familienfreundliche Atmosphäre',
-    'Raum zum Spielen für die Kinder',
+      'Liebevoll zusammengestellte Frühstücks-Etagere',
+      'Frische Brötchen',
+      'Herzhafte und süße Aufschnitte',
+      'Familienfreundliche Atmosphäre',
+      'Raum zum Spielen für die Kinder',
     ],
     absageHinweis: 'Falls ihr euren Termin nicht wahrnehmen könnt, sagt bitte mindestens eine Stunde vorher ab. So können wir den Platz noch an eine andere Familie vergeben. Vielen Dank!',
-}
+  }
 }
