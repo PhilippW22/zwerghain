@@ -148,7 +148,6 @@ export async function getEventsData(): Promise<EventsData> {
     eichhoernchenBullets: [
       '2,5 Stunden exklusive Nutzung des Cafés',
       'Dekoration in einer Wunschfarbe: Rosa, Blau, Grün oder Gelb',
-      'Passende Luftballons',
       'Wasser & Apfelschorle für die Kinder',
       'Frische & süße Etagere mit Gemüsesticks & Obst',
       'Himbeer-Vanille-Geburtstagstorte',

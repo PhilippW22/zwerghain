@@ -9,7 +9,7 @@ const BLOCKED_SUNDAYS = ['2026-08-30']
 
 const ALLOWED_FARBE = ['rosa', 'blau', 'gruen', 'gelb']
 const ALLOWED_MOTTO = ['prinzessin', 'pirat', 'superhelden', 'pawpatrol', 'dinosaurier', 'einhorn', 'waldtiere', 'sonstiges']
-const ALLOWED_EXTRAS = ['kinderschminken', 'animation', 'basteln', 'gastgeschenk', 'einladungskarten', 'torte', 'prinzessin_held']
+const ALLOWED_EXTRAS = ['kinderschminken', 'animation', 'basteln', 'gastgeschenk', 'einladungskarten', 'torte', 'prinzessin_held', 'dekopauschale']
 const ALLOWED_FUCHS_ESSEN = ['pizza', 'nudeln']
 const ALLOWED_KIND_ALTER = ['0-2', '2+']
 const ALLOWED_FS_ANKUNFT = ['09:00-10:30', '11:00-12:30']
@@ -72,6 +72,7 @@ function formatExtras(extras: string[]): string {
     einladungskarten: 'Einladungskarten (10 €)',
     torte: 'Individuelle Geburtstagstorte (ab 120 €)',
     prinzessin_held: 'Prinzessin / Superheld',
+    dekopauschale: 'Dekopauschale Erwachsenentische (20 €)',
   }
   return extras.length > 0 ? extras.map(e => map[e] || e).join(', ') : '–'
 }

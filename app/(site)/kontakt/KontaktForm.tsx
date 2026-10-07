@@ -66,6 +66,7 @@ const geburtstagExtras = [
   { value: 'gastgeschenk', label: 'Gastgeschenk-Tütchen', price: '10 €' },
   { value: 'torte', label: 'Individuelle Geburtstagstorte', price: 'ab 120 €' },
   { value: 'prinzessin_held', label: 'Prinzessin / Superheld', price: 'auf Anfrage' },
+  { value: 'dekopauschale', label: 'Dekopauschale Erwachsenentische', price: '20 €' },
 ]
 
 function numOptions(min: number, max: number, suffix = '') {
@@ -404,7 +405,7 @@ export default function KontaktForm({ blockedSundays }: { blockedSundays: string
               <select id="ei_erwachsene" value={form.ei_erwachsene}
                 onChange={e => set('ei_erwachsene', e.target.value)} className={inputClass(errors.ei_erwachsene)}>
                 <option value="">Bitte wählen</option>
-                {numOptions(0, 15, ' Erwachsene').map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                {numOptions(0, 10, ' Erwachsene').map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
             </Field>
           </fieldset>
@@ -516,7 +517,7 @@ export default function KontaktForm({ blockedSundays }: { blockedSundays: string
               <select id="fu_erwachsene" value={form.fu_erwachsene}
                 onChange={e => set('fu_erwachsene', e.target.value)} className={inputClass(errors.fu_erwachsene)}>
                 <option value="">Bitte wählen</option>
-                {numOptions(0, 15, ' Erwachsene').map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                {numOptions(0, 10, ' Erwachsene').map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
             </Field>
           </fieldset>
@@ -800,6 +801,8 @@ export default function KontaktForm({ blockedSundays }: { blockedSundays: string
               </label>
             </div>
             <a href="/datenschutz"
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-7 text-sm underline text-brand-green hover:text-brand-green/80 transition-colors w-fit">
               Datenschutzerklärung lesen
             </a>
